@@ -36,12 +36,12 @@ public class GUI extends JFrame {
 
         initComponents();
 
-        new CalculationThread(this).start();
+        new CalculationThread(this, mandelbrot).start();
 
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         new GUI();
     }
 
@@ -73,7 +73,7 @@ public class GUI extends JFrame {
         jPanelLeft.setSize(Mandelbrot.WIDTH, Mandelbrot.HEIGHT);
 
         jButtonDraw = new JButton("Draw");
-        jButtonDraw.addActionListener(e -> new CalculationThread(gui).start());
+        jButtonDraw.addActionListener(e -> new CalculationThread(gui, mandelbrot).start());
 
         jButtonExport = new JButton("Export");
         jButtonExport.addActionListener(e -> saveImageAsJPG(((JButton) e.getSource())));
