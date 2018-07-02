@@ -16,7 +16,7 @@ import java.util.Properties;
  * @author florian.warnke
  * @version v1.0
  */
-class Configuration {
+public class Configuration {
 
     private final Properties properties;
 
@@ -37,7 +37,7 @@ class Configuration {
      * @param key the key which should be read
      * @return (String) the value from the key
      */
-    String getProperty(String key) {
+    public String getProperty(String key) {
         return properties.getProperty(key);
     }
 }

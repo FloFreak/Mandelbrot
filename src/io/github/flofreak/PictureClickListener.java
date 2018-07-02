@@ -7,6 +7,8 @@
  */
 package io.github.flofreak;
 
+import io.github.flofreak.algorithms.BaseAlgorithm;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -17,11 +19,11 @@ import java.awt.event.MouseListener;
 class PictureClickListener implements MouseListener {
 
     private final GUI gui;
-    private final Mandelbrot mandelbrot;
+    private final BaseAlgorithm algorithm;
 
-    public PictureClickListener(GUI gui, Mandelbrot mandelbrot) {
+    PictureClickListener(GUI gui, BaseAlgorithm algorithm) {
         this.gui = gui;
-        this.mandelbrot = mandelbrot;
+        this.algorithm = algorithm;
     }
 
     @Override
@@ -30,7 +32,7 @@ class PictureClickListener implements MouseListener {
         int x = e.getX();
         int y = e.getY();
         System.out.println(x + " " + y);
-        Thread t = new Thread(() -> gui.setImage(mandelbrot.calculate()));
+        Thread t = new Thread(() -> gui.setImage(algorithm.calculate()));
         t.start();
     }
 

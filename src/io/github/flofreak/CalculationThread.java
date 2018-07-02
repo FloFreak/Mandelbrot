@@ -7,6 +7,8 @@
  */
 package io.github.flofreak;
 
+import io.github.flofreak.algorithms.BaseAlgorithm;
+
 /**
  * The Thread which calculates and draw the image
  *
@@ -15,23 +17,23 @@ package io.github.flofreak;
  */
 class CalculationThread extends Thread {
     private final GUI gui;               //The GUI where everything will be displayed
-    private final Mandelbrot mandelbrot; //The algorithm where the image is calculated
+    private final BaseAlgorithm algorithm; //The algorithm where the image is calculated
 
     /**
      * The thread which calculates the image and draws it
      *
      * @param gui        the GUI where it should be displayed
-     * @param mandelbrot the algorithm
+     * @param algorithm the algorithm
      */
-    CalculationThread(GUI gui, Mandelbrot mandelbrot) {
+    CalculationThread(GUI gui, BaseAlgorithm algorithm) {
         this.gui = gui;
-        this.mandelbrot = mandelbrot;
+        this.algorithm = algorithm;
     }
 
     /**
      * Calculates the image and let the GUI draw it
      */
     public void run() {
-        gui.setImage(mandelbrot.calculate());
+        gui.setImage(algorithm.calculate());
     }
 }

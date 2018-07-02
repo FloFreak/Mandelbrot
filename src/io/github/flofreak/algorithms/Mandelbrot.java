@@ -5,33 +5,29 @@
  * Copyright (C) 2018 Florian Warnke
  * All rights reserved.
  */
-package io.github.flofreak;
+package io.github.flofreak.algorithms;
+
+import io.github.flofreak.GUI;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-/*Todo add all comments and other conventions*/
-class Mandelbrot {
-    static int WIDTH;
-    static int HEIGHT;
-    private static int MAX;
 
-    private static int[] colors;
+/*Todo add all comments and other conventions*/
+public class Mandelbrot extends BaseAlgorithm {
+    private final static int MAX = Integer.parseInt(GUI.cfg.getProperty("imgMaxIterations"));
+
+    private static final int[] colors = new int[MAX];
 
     private final GUI gui;
 
-    Mandelbrot(GUI gui) {
+    public Mandelbrot(GUI gui) {
         this.gui = gui;
-
-        WIDTH = Integer.parseInt(GUI.cfg.getProperty("imgWidth"));
-        HEIGHT = Integer.parseInt(GUI.cfg.getProperty("imgHeight"));
-        MAX = Integer.parseInt(GUI.cfg.getProperty("imgMaxIterations"));
-        colors = new int[MAX];
 
         for (int i = 0; i < MAX; i++)
             colors[i] = Color.HSBtoRGB(i / 120f, 1, i / (i + 5f));
     }
 
-    BufferedImage calculate() {
+    public BufferedImage calculate() {
         /*todo add the min and max selections*/
         /*todo inputs must eventually be not 0*/
         /*todo decide weather zoom > 1 is a zoom out*/

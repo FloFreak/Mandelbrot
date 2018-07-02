@@ -9,6 +9,9 @@ package io.github.flofreak;
 
 //Imports
 
+import io.github.flofreak.algorithms.BaseAlgorithm;
+import io.github.flofreak.algorithms.Mandelbrot;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -25,16 +28,16 @@ import java.text.NumberFormat;
  * @author florian.warnke
  * @version v2.3.3
  */
-class GUI extends JFrame {
+public class GUI extends JFrame {
     //Config
-    static final Configuration cfg = new Configuration(); //The configuration class
+    public static final Configuration cfg = new Configuration(); //The configuration class
 
     //Constants for GUI size
     private static final int WIDTH = Integer.parseInt(cfg.getProperty("GUIWidth"));   //The width of the GUI
     private static final int HEIGHT = Integer.parseInt(cfg.getProperty("GUIHeight")); //The height of the GUI
 
     //Declaration of the algorithm parts
-    private final Mandelbrot mandelbrot;           //The Mandelbrot algorithm
+    private final BaseAlgorithm algorithm;           //The BaseAlgorithm algorithm
     private BufferedImage image;                   //The image, in which will be drawn
 
     //Declaration of all GUI elements
@@ -51,12 +54,12 @@ class GUI extends JFrame {
      * Constructor for the GUI
      * <p>
      * Creates a frame and adds all elements
-     * Instantiate the mandelbrot algorithm
+     * Instantiate the algorithm algorithm
      */
     private GUI() {
         //Initialize all global variables
         this.gui = this;
-        this.mandelbrot = new Mandelbrot(gui);
+        this.algorithm = new Mandelbrot(gui);
 
         //Specifies the frame
         this.setTitle(cfg.getProperty("title"));
@@ -68,7 +71,7 @@ class GUI extends JFrame {
         initComponents();
 
         //Calculates the Image in a new Thread
-        new CalculationThread(this, mandelbrot).start();
+        new CalculationThread(this, algorithm).start();
 
         this.setVisible(true);
     }
@@ -100,7 +103,7 @@ class GUI extends JFrame {
         //On submit from the file chooser
         if (jFileChooser.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
             try {
-                //Writes the image as 'Mandelbrot.jpg' to the selected path
+                //Writes the image as 'BaseAlgorithm.jpg' to the selected path
                 File file = (jFileChooser.getSelectedFile().getName().endsWith(".jpg")
                         ? jFileChooser.getSelectedFile()
                         : new File(jFileChooser.getSelectedFile().getAbsolutePath() + ".jpg"));
@@ -132,15 +135,15 @@ class GUI extends JFrame {
         JButton jButtonDraw = new JButton("Draw");
         JButton jButtonExport = new JButton("Export");
 
-        //Sets the size to fit the Mandelbrot image size
-        jPanelLeft.setSize(Mandelbrot.WIDTH, Mandelbrot.HEIGHT);
+        //Sets the size to fit the BaseAlgorithm image size
+        jPanelLeft.setSize(BaseAlgorithm.WIDTH, BaseAlgorithm.HEIGHT);
 
         //Adds the action listener to the button
         jButtonDraw.addActionListener(e -> {
             //Shows calculating label
             jLabelLoading.setVisible(true);
             //Stats an anonymous thread, where the image is calculated and drawn
-            new CalculationThread(gui, mandelbrot).start();
+            new CalculationThread(gui, algorithm).start();
         });
 
         //Adds the action listener to the button
@@ -149,7 +152,7 @@ class GUI extends JFrame {
         //Sets the picture label visible, that the size is shown, even while it's empty
         jLabelPicture.setVisible(true);
         //Adds mouse listener to picture
-        jLabelPicture.addMouseListener(new PictureClickListener(gui, mandelbrot));
+        jLabelPicture.addMouseListener(new PictureClickListener(gui, algorithm));
 
         createTextFields(jPanelRight);
 
@@ -162,7 +165,7 @@ class GUI extends JFrame {
         jPanelLeft.add(jLabelPicture);
 
         //Adds both panel to one split panel, for a split view
-        jSplitPane.setDividerLocation(Mandelbrot.WIDTH);
+        jSplitPane.setDividerLocation(BaseAlgorithm.WIDTH);
         jSplitPane.setLeftComponent(jPanelLeft);
         jSplitPane.setRightComponent(jPanelRight);
 
@@ -248,35 +251,35 @@ class GUI extends JFrame {
     /**
      * @return (double) the zoom
      */
-    double getZoom() {
+    public double getZoom() {
         return (double) jTextFieldZoom.getValue();
     }
 
     /**
      * @return (double) the minimum of the imaginary axis
      */
-    double getMinImag() {
+    public double getMinImag() {
         return (double) jTextFieldMinImag.getValue();
     }
 
     /**
      * @return (double) the maximum of the imaginary axis
      */
-    double getMaxImag() {
+    public double getMaxImag() {
         return (double) jTextFieldMaxImag.getValue();
     }
 
     /**
      * @return (double) the minimum of the real axis
      */
-    double getMinReal() {
+    public double getMinReal() {
         return (double) jTextFieldMinReal.getValue();
     }
 
     /**
      * @return (double) the maximum of the real axis
      */
-    double getMaxReal() {
+    public double getMaxReal() {
         return (double) jTextFieldMaxReal.getValue();
     }
 
