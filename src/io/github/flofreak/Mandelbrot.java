@@ -1,3 +1,10 @@
+/*
+ * Mandelbrot
+ * v1.2
+ * 02. Juli 2018
+ * Copyright (C) 2018 Florian Warnke
+ * All rights reserved.
+ */
 package io.github.flofreak;
 
 import java.awt.*;
@@ -15,11 +22,15 @@ class Mandelbrot {
     Mandelbrot(GUI gui) {
         this.gui = gui;
         for (int i = 0; i < MAX; i++)
-            colors[i] = Color.HSBtoRGB(i / 256f, 1, i / (i + 8f));
+            colors[i] = Color.HSBtoRGB(i / 120f, 1, i / (i + 5f));
     }
 
     BufferedImage calculate() {
         double zoom = gui.getZoom();
+        double minImag = gui.getMinImag();
+        double maxImag = gui.getMaxImag();
+        double minReal = gui.getMinReal();
+        double maxReal = gui.getMaxReal();
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
@@ -29,7 +40,7 @@ class Mandelbrot {
                 double c_im = (row - HEIGHT / 2) * zoom / WIDTH;
                 double x = 0, y = 0;
                 int iterations = 0;
-                while (x * x + y * y < 4 && iterations < MAX) {
+                while (x * x + y * y < zoom && iterations < MAX) {
                     double x_new = x * x - y * y + c_re;
                     y = 2 * x * y + c_im;
                     x = x_new;
