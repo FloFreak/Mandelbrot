@@ -7,20 +7,30 @@
  */
 package io.github.flofreak;
 
+import sun.awt.ConstrainableGraphics;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 /*Todo add all comments and other conventions*/
 class Mandelbrot {
-    static final int WIDTH = 800;
-    static final int HEIGHT = 800;
-    private static final int MAX = 1000;
+    static int WIDTH;
+    static int HEIGHT;
+    private static int MAX;
 
-    private static final int[] colors = new int[MAX];
+    private static int[] colors;
 
     private final GUI gui;
+    private final Configuration cfg;
 
-    Mandelbrot(GUI gui) {
+    Mandelbrot(GUI gui, Configuration cfg) {
+        this.cfg = cfg;
         this.gui = gui;
+
+        WIDTH = Integer.parseInt(cfg.getProperty("imgWidth"));
+        HEIGHT = Integer.parseInt(cfg.getProperty("imgHeight"));
+        MAX = Integer.parseInt(cfg.getProperty("imgMaxIterations"));
+        colors = new int[MAX];
+
         for (int i = 0; i < MAX; i++)
             colors[i] = Color.HSBtoRGB(i / 120f, 1, i / (i + 5f));
     }
@@ -29,6 +39,7 @@ class Mandelbrot {
         /*todo add the min and max selections*/
         /*todo inputs must eventually be not 0*/
         /*todo decide weather zoom > 1 is a zoom out*/
+        /*todo zoom and axis must be depended?*/
         double zoom = gui.getZoom();
         double minImag = gui.getMinImag();
         double maxImag = gui.getMaxImag();
@@ -40,18 +51,25 @@ class Mandelbrot {
 
         for (int row = 0; row < HEIGHT; row++) {
             for (int col = 0; col < WIDTH; col++) {
-                double c_re = (col - WIDTH / 2) * zoom / WIDTH;
-                double c_im = (row - HEIGHT / 2) * zoom / WIDTH;
-                double x = 0, y = 0;
+                double complexImaginary = (row - HEIGHT / 2) * zoom / WIDTH;
+                double complexReal = (col - WIDTH / 2) * zoom / WIDTH;
                 int iterations = 0;
+
+                double x = 0;
+                double y = 0;
+
                 while (x * x + y * y < zoom && iterations < MAX) {
-                    double x_new = x * x - y * y + c_re;
-                    y = 2 * x * y + c_im;
+                    double x_new = x * x - y * y + complexReal;
+                    y = 2 * x * y + complexImaginary;
                     x = x_new;
                     iterations++;
                 }
-                if (iterations < MAX) image.setRGB(col, row, colors[iterations]);
-                else image.setRGB(col, row, 0x000000);
+
+                if (iterations < MAX) {
+                    image.setRGB(col, row, colors[iterations]);
+                } else {
+                    image.setRGB(col, row, 0x000000);
+                }
             }
         }
         return image;

@@ -28,14 +28,19 @@ import java.text.NumberFormat;
  * @version v2.3.3
  */
 class GUI extends JFrame {
+    //Config
+    private static Configuration cfg = new Configuration(); //The configuration class
+
     //Constants for GUI size
-    private static final int WIDTH = 1000;         //The width of the GUI
-    private static final int HEIGHT = 800;         //The height of the GUI
+    private static final int WIDTH = Integer.parseInt(cfg.getProperty("GUIWidth"));   //The width of the GUI
+    private static final int HEIGHT = Integer.parseInt(cfg.getProperty("GUIHeight")); //The height of the GUI
+
+    //Declaration of the algorithm parts
+    private final Mandelbrot mandelbrot;           //The Mandelbrot algorithm
+    private BufferedImage image;                   //The image, in which will be drawn
 
     //Declaration of all GUI elements
     private final GUI gui;                         //The GUI
-    private final Mandelbrot mandelbrot;           //The Mandelbrot algorithm
-    private BufferedImage image;                   //The image, in which will be drawn
     private JFormattedTextField jTextFieldMinReal; //The text field for the minimum on the real axis
     private JFormattedTextField jTextFieldMaxReal; //The text field for the maximum on the real axis
     private JFormattedTextField jTextFieldMinImag; //The text field for the minimum on the imaginary axis
@@ -53,10 +58,10 @@ class GUI extends JFrame {
     private GUI() {
         //Initialize all global variables
         this.gui = this;
-        this.mandelbrot = new Mandelbrot(gui);
+        this.mandelbrot = new Mandelbrot(gui, cfg);
 
         //Specifies the frame
-        this.setTitle("Mandelbrot");
+        this.setTitle(cfg.getProperty("title"));
         this.setSize(WIDTH, HEIGHT);
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -89,10 +94,10 @@ class GUI extends JFrame {
     private void saveImageAsJPG(JButton parent, BufferedImage image) {
         //Instantiate the file chooser
         JFileChooser jFileChooser = new JFileChooser();
-        jFileChooser.setDialogTitle("Mandelbrot Save");
+        jFileChooser.setDialogTitle(cfg.getProperty("title") + " - Export");
         jFileChooser.setFileFilter(new FileNameExtensionFilter("JPG Files", "jpg"));
         jFileChooser.setAcceptAllFileFilterUsed(false);
-        jFileChooser.setSelectedFile(new File("Mandelbrot.jpg"));
+        jFileChooser.setSelectedFile(new File(cfg.getProperty("title") + ".jpg"));
 
         //On submit from the file chooser
         if (jFileChooser.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
