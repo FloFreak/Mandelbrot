@@ -142,6 +142,8 @@ class GUI extends JFrame {
         //Sets the picture label visible, that the size is shown, even while it's empty
         jLabelPicture.setVisible(true);
         //Adds mouse listener to picture
+        /*todo add the ability to click on image to recenter*/
+        /*todo make mouse listener own class*/
         jLabelPicture.addMouseListener(new MouseListener() {
             //Work in progress
             @Override

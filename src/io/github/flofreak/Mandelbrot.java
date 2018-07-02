@@ -9,7 +9,7 @@ package io.github.flofreak;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
+/*Todo add all comments and other conventions*/
 class Mandelbrot {
     static final int WIDTH = 800;
     static final int HEIGHT = 800;
@@ -26,6 +26,7 @@ class Mandelbrot {
     }
 
     BufferedImage calculate() {
+        /*todo add the min and max selections*/
         double zoom = gui.getZoom();
         double minImag = gui.getMinImag();
         double maxImag = gui.getMaxImag();
