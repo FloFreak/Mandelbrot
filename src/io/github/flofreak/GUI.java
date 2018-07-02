@@ -13,17 +13,21 @@ import java.text.NumberFormat;
 public class GUI extends JFrame {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 800;
+
     private GUI gui;
+    private Mandelbrot mandelbrot;
     private BufferedImage image;
 
     private JSplitPane jSplitPane;
     private JPanel jPanelLeft, jPanelRight;
     private JButton jButtonDraw, jButtonExport;
-    private JFormattedTextField jTextFieldMinReell, jTextFieldMaxReell, jTextFieldMinImag, jTextFieldMaxImag, jTextFieldZoom;
+    private JFormattedTextField jTextFieldMinReell, jTextFieldMaxReell, jTextFieldMinImag, jTextFieldMaxImag;
+    public JFormattedTextField jTextFieldZoom;
     private JLabel jLabelPicture;
 
     private GUI() {
         this.gui = this;
+        this.mandelbrot = new Mandelbrot(gui);
 
         this.setTitle("Mandelbrot");
         this.setSize(WIDTH, HEIGHT);
@@ -80,7 +84,7 @@ public class GUI extends JFrame {
             public void mouseClicked(final MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
-                Thread t = new Thread(() -> gui.setImage(Mandelbrot.calculate()));
+                Thread t = new Thread(() -> gui.setImage(mandelbrot.calculate()));
                 t.start();
             }
 
