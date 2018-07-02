@@ -1,6 +1,6 @@
 /*
  * CalculationThread
- * v1.0
+ * v1.1
  * 02. Juli 2018
  * Copyright (C) 2018 Florian Warnke
  * All rights reserved.
@@ -11,11 +11,11 @@ package io.github.flofreak;
  * The Thread which calculates and draw the image
  *
  * @author florian.warnke
- * @version v1.0
+ * @version v1.1
  */
 class CalculationThread extends Thread {
-    private GUI gui;               //The GUI where everything will be displayed
-    private Mandelbrot mandelbrot; //The algorithm where the image is calculated
+    private final GUI gui;               //The GUI where everything will be displayed
+    private final Mandelbrot mandelbrot; //The algorithm where the image is calculated
 
     /**
      * The thread which calculates the image and draws it

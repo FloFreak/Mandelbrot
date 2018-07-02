@@ -1,6 +1,6 @@
 /*
  * GUI
- * v2.3.2
+ * v2.3.3
  * 02. Juli 2018
  * Copyright (C) 2018 Florian Warnke
  * All rights reserved.
@@ -24,16 +24,16 @@ import java.text.NumberFormat;
  * The main class
  *
  * @author florian.warnke
- * @version v2.3.2
+ * @version v2.3.3
  */
-public class GUI extends JFrame {
+class GUI extends JFrame {
     //Constants for GUI size
     private static final int WIDTH = 1000;         //The width of the GUI
     private static final int HEIGHT = 800;         //The height of the GUI
 
     //Declaration of all GUI elements
-    private GUI gui;                               //The GUI
-    private Mandelbrot mandelbrot;                 //The Mandelbrot algorithm
+    private final GUI gui;                         //The GUI
+    private final Mandelbrot mandelbrot;           //The Mandelbrot algorithm
     private BufferedImage image;                   //The image, in which will be drawn
     private JFormattedTextField jTextFieldMinReal; //The text field for the minimum on the real axis
     private JFormattedTextField jTextFieldMaxReal; //The text field for the maximum on the real axis

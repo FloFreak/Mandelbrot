@@ -15,9 +15,9 @@ class Mandelbrot {
     static final int HEIGHT = 800;
     private static final int MAX = 1000;
 
-    private static int[] colors = new int[MAX];
+    private static final int[] colors = new int[MAX];
 
-    private GUI gui;
+    private final GUI gui;
 
     Mandelbrot(GUI gui) {
         this.gui = gui;
@@ -31,6 +31,7 @@ class Mandelbrot {
         double maxImag = gui.getMaxImag();
         double minReal = gui.getMinReal();
         double maxReal = gui.getMaxReal();
+        System.out.println(minImag + " " + maxImag + " " + minReal + " " + maxReal);
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
