@@ -19,7 +19,7 @@ class Mandelbrot {
     }
 
     BufferedImage calculate() {
-        double zoom = (Double) gui.jTextFieldZoom.getValue();
+        double zoom = gui.getZoom();
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 

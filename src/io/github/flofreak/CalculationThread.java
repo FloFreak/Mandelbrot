@@ -9,6 +9,9 @@ class CalculationThread extends Thread {
         this.mandelbrot = mandelbrot;
     }
 
+    /**
+     * Calculates the image and let the GUI draw it
+     */
     public void run() {
         gui.setImage(mandelbrot.calculate());
     }
