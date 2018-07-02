@@ -27,6 +27,8 @@ class Mandelbrot {
 
     BufferedImage calculate() {
         /*todo add the min and max selections*/
+        /*todo inputs must eventually be not 0*/
+        /*todo decide weather zoom > 1 is a zoom out*/
         double zoom = gui.getZoom();
         double minImag = gui.getMinImag();
         double maxImag = gui.getMaxImag();

@@ -11,6 +11,7 @@ package io.github.flofreak;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -89,15 +90,18 @@ class GUI extends JFrame {
         //Instantiate the file chooser
         JFileChooser jFileChooser = new JFileChooser();
         jFileChooser.setDialogTitle("Mandelbrot Save");
-        jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jFileChooser.setFileFilter(new FileNameExtensionFilter("JPG Files", "jpg"));
         jFileChooser.setAcceptAllFileFilterUsed(false);
+        jFileChooser.setSelectedFile(new File("Mandelbrot.jpg"));
 
         //On submit from the file chooser
-        if (jFileChooser.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION) {
+        if (jFileChooser.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
             try {
                 //Writes the image as 'Mandelbrot.jpg' to the selected path
-                ImageIO.write(image, "jpg",
-                        new File(jFileChooser.getSelectedFile() + "/Mandelbrot.jpg"));
+                File file = (jFileChooser.getSelectedFile().getName().endsWith(".jpg")
+                        ? jFileChooser.getSelectedFile()
+                        : new File(jFileChooser.getSelectedFile().getAbsolutePath() + ".jpg"));
+                ImageIO.write(image, "jpg", file);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
