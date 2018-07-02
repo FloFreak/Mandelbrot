@@ -7,8 +7,6 @@
  */
 package io.github.flofreak;
 
-import sun.awt.ConstrainableGraphics;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 /*Todo add all comments and other conventions*/
@@ -20,15 +18,13 @@ class Mandelbrot {
     private static int[] colors;
 
     private final GUI gui;
-    private final Configuration cfg;
 
-    Mandelbrot(GUI gui, Configuration cfg) {
-        this.cfg = cfg;
+    Mandelbrot(GUI gui) {
         this.gui = gui;
 
-        WIDTH = Integer.parseInt(cfg.getProperty("imgWidth"));
-        HEIGHT = Integer.parseInt(cfg.getProperty("imgHeight"));
-        MAX = Integer.parseInt(cfg.getProperty("imgMaxIterations"));
+        WIDTH = Integer.parseInt(GUI.cfg.getProperty("imgWidth"));
+        HEIGHT = Integer.parseInt(GUI.cfg.getProperty("imgHeight"));
+        MAX = Integer.parseInt(GUI.cfg.getProperty("imgMaxIterations"));
         colors = new int[MAX];
 
         for (int i = 0; i < MAX; i++)

@@ -7,8 +7,6 @@
  */
 package io.github.flofreak;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -20,7 +18,7 @@ import java.util.Properties;
  */
 class Configuration {
 
-    private Properties properties;
+    private final Properties properties;
 
     /**
      * The configuration file is read and saved

@@ -13,8 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +27,7 @@ import java.text.NumberFormat;
  */
 class GUI extends JFrame {
     //Config
-    private static Configuration cfg = new Configuration(); //The configuration class
+    static final Configuration cfg = new Configuration(); //The configuration class
 
     //Constants for GUI size
     private static final int WIDTH = Integer.parseInt(cfg.getProperty("GUIWidth"));   //The width of the GUI
@@ -40,7 +38,7 @@ class GUI extends JFrame {
     private BufferedImage image;                   //The image, in which will be drawn
 
     //Declaration of all GUI elements
-    private final GUI gui;                         //The GUI
+    private final GUI gui;                          //The GUI
     private JFormattedTextField jTextFieldMinReal; //The text field for the minimum on the real axis
     private JFormattedTextField jTextFieldMaxReal; //The text field for the maximum on the real axis
     private JFormattedTextField jTextFieldMinImag; //The text field for the minimum on the imaginary axis
@@ -58,7 +56,7 @@ class GUI extends JFrame {
     private GUI() {
         //Initialize all global variables
         this.gui = this;
-        this.mandelbrot = new Mandelbrot(gui, cfg);
+        this.mandelbrot = new Mandelbrot(gui);
 
         //Specifies the frame
         this.setTitle(cfg.getProperty("title"));
@@ -151,51 +149,9 @@ class GUI extends JFrame {
         //Sets the picture label visible, that the size is shown, even while it's empty
         jLabelPicture.setVisible(true);
         //Adds mouse listener to picture
-        /*todo add the ability to click on image to recenter*/
-        /*todo make mouse listener own class*/
-        jLabelPicture.addMouseListener(new MouseListener() {
-            //Work in progress
-            @Override
-            public void mouseClicked(final MouseEvent e) {
-                int x = e.getX();
-                int y = e.getY();
-                System.out.println(x + " " + y);
-                Thread t = new Thread(() -> gui.setImage(mandelbrot.calculate()));
-                t.start();
-            }
+        jLabelPicture.addMouseListener(new PictureClickListener(gui, mandelbrot));
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
-
-        //Creates text fields, witch default value
-        createDoubleJTextField(-2.0, jTextFieldMinReal, jTextFieldMinImag);
-        createDoubleJTextField(2.0, jTextFieldMaxReal, jTextFieldMaxImag);
-        createDoubleJTextField(4.0, jTextFieldZoom);
-
-        //Initialize an group layout for the input fields
-        GroupLayout groupLayout = new GroupLayout(jPanelRight);
-        GroupLayout.ParallelGroup horizontalGroup = groupLayout.createParallelGroup();
-
-        //Groups all input fields with its labels
-        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Min Imag"), jTextFieldMinImag);
-        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Max Imag"), jTextFieldMaxImag);
-        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Min Real"), jTextFieldMinReal);
-        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Max Real"), jTextFieldMaxReal);
-        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Zoom"), jTextFieldZoom);
+        createTextFields(jPanelRight);
 
         //Adds all menu components to the menu panel
         jPanelRight.add(jButtonExport);
@@ -235,7 +191,7 @@ class GUI extends JFrame {
      * @param value  the default value
      * @param fields the text fields
      */
-    private void createDoubleJTextField(double value, JFormattedTextField... fields) {
+    private void createDoubleOnlyJTextField(double value, JFormattedTextField... fields) {
 
         //Loops all text fields
         for (JFormattedTextField field : fields) {
@@ -265,6 +221,28 @@ class GUI extends JFrame {
         }
 
         horizontalGroup.addGroup(sequentialGroup);
+    }
+
+    /**
+     * Creates all text fields
+     * @param jPanel the panel where ro add them
+     */
+    private void createTextFields(JPanel jPanel) {
+        //Creates text fields, witch default value
+        createDoubleOnlyJTextField(-2.0, jTextFieldMinReal, jTextFieldMinImag);
+        createDoubleOnlyJTextField(2.0, jTextFieldMaxReal, jTextFieldMaxImag);
+        createDoubleOnlyJTextField(4.0, jTextFieldZoom);
+
+        //Initialize an group layout for the input fields
+        GroupLayout groupLayout = new GroupLayout(jPanel);
+        GroupLayout.ParallelGroup horizontalGroup = groupLayout.createParallelGroup();
+
+        //Groups all input fields with its labels
+        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Min Imag"), jTextFieldMinImag);
+        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Max Imag"), jTextFieldMaxImag);
+        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Min Real"), jTextFieldMinReal);
+        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Max Real"), jTextFieldMaxReal);
+        createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Zoom"), jTextFieldZoom);
     }
 
     /**
