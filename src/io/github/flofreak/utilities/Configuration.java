@@ -5,7 +5,7 @@
  * Copyright (C) 2018 Florian Warnke
  * All rights reserved.
  */
-package io.github.flofreak;
+package io.github.flofreak.utilities;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -23,7 +23,7 @@ public class Configuration {
     /**
      * The configuration file is read and saved
      */
-    Configuration() {
+    public Configuration() {
         properties = new Properties();
         try {
             properties.load(this.getClass().getClassLoader().getResourceAsStream("config/config.properties"));

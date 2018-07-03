@@ -5,8 +5,9 @@
  * Copyright (C) 2018 Florian Warnke
  * All rights reserved.
  */
-package io.github.flofreak;
+package io.github.flofreak.listener;
 
+import io.github.flofreak.GUI;
 import io.github.flofreak.algorithms.BaseAlgorithm;
 
 import java.awt.event.MouseEvent;
@@ -16,12 +17,12 @@ import java.awt.event.MouseListener;
  * The listener for clicking the picture
  * todo Comments
  */
-class PictureClickListener implements MouseListener {
+public class PictureClickListener implements MouseListener {
 
     private final GUI gui;
     private final BaseAlgorithm algorithm;
 
-    PictureClickListener(GUI gui, BaseAlgorithm algorithm) {
+    public PictureClickListener(GUI gui, BaseAlgorithm algorithm) {
         this.gui = gui;
         this.algorithm = algorithm;
     }
