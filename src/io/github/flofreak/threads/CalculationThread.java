@@ -16,7 +16,7 @@ import io.github.flofreak.algorithms.BaseAlgorithm;
  * @author florian.warnke
  * @version v1.1
  */
-public class CalculationThread extends Thread {
+public class CalculationThread implements Runnable {
     private final GUI gui;               //The GUI where everything will be displayed
     private final BaseAlgorithm algorithm; //The algorithm where the image is calculated
 
@@ -34,6 +34,7 @@ public class CalculationThread extends Thread {
     /**
      * Calculates the image and let the GUI draw it
      */
+    @Override
     public void run() {
         gui.jLabelLoading.setVisible(true);
         gui.setImage(algorithm.calculate());

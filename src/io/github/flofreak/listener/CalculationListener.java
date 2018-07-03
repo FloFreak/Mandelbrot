@@ -22,6 +22,7 @@ public class CalculationListener implements ActionListener {
         //Shows calculating label
         gui.jLabelLoading.setVisible(true);
         //Stats an anonymous thread, where the image is calculated and drawn
-        new CalculationThread(gui, algorithm).start();
+        Thread thread = new Thread(new CalculationThread(gui, algorithm));
+        thread.start();
     }
 }

@@ -72,7 +72,8 @@ public class GUI extends JFrame {
         initComponents();
 
         //Calculates the Image in a new Thread
-        new CalculationThread(this, algorithm).start();
+        Thread thread = new Thread(new CalculationThread(gui, algorithm));
+        thread.start();
 
         this.setVisible(true);
     }
