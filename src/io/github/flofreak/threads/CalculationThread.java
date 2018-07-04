@@ -8,7 +8,6 @@
 package io.github.flofreak.threads;
 
 import io.github.flofreak.GUI;
-import io.github.flofreak.algorithms.BaseAlgorithm;
 
 /**
  * The Thread which calculates and draw the image

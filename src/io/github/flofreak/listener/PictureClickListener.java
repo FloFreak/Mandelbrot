@@ -8,7 +8,6 @@
 package io.github.flofreak.listener;
 
 import io.github.flofreak.GUI;
-import io.github.flofreak.algorithms.BaseAlgorithm;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

@@ -1,7 +1,6 @@
 package io.github.flofreak.listener;
 
 import io.github.flofreak.GUI;
-import io.github.flofreak.algorithms.BaseAlgorithm;
 import io.github.flofreak.threads.CalculationThread;
 
 import java.awt.event.ActionEvent;

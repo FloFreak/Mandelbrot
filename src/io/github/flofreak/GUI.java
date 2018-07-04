@@ -186,41 +186,41 @@ public class GUI extends JFrame {
     }
 
     private void createMenu() {
-        JMenu jMenu;
+        JMenu jMenuPicture, jMenuAlgorithm;
         JMenuItem jMenuItemSave, JMenuItemClockwise, JMenuItemCounterClockwise;
         JRadioButtonMenuItem jRadioButtonMenuItemMandel, jRadioButtonMenuItemJulia;
 
         jMenuBar = new JMenuBar();  //Create the menu bar.
 
         //Build the first menu.
-        jMenu = new JMenu("Picture");
-        jMenu.getAccessibleContext().setAccessibleDescription("All about the picture");
-        jMenuBar.add(jMenu);
+        jMenuPicture = new JMenu("Picture");
+        jMenuPicture.getAccessibleContext().setAccessibleDescription("All about the picture");
+        jMenuBar.add(jMenuPicture);
 
         //a group of JMenuItems
         jMenuItemSave = new JMenuItem("Save");
         jMenuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
         jMenuItemSave.addActionListener(e -> ImageUtilities.saveImageAsJPG(jMenuItemSave, image));
-        jMenu.add(jMenuItemSave);
+        jMenuPicture.add(jMenuItemSave);
 
         //a group of radio button menu items
-        jMenu.addSeparator();
+        jMenuPicture.addSeparator();
 
         JMenuItemClockwise = new JMenuItem("Rotate Clockwise");
         JMenuItemClockwise.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, InputEvent.CTRL_MASK));
         JMenuItemClockwise.addActionListener(e -> setImage(ImageUtilities.turnClockwise(image)));
-        jMenu.add(JMenuItemClockwise);
+        jMenuPicture.add(JMenuItemClockwise);
 
         JMenuItemCounterClockwise = new JMenuItem("Rotate Counterclockwise");
         JMenuItemCounterClockwise.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, InputEvent.CTRL_MASK));
         JMenuItemCounterClockwise.addActionListener(e -> setImage(ImageUtilities.turnCounterClockwise(image)));
-        jMenu.add(JMenuItemCounterClockwise);
+        jMenuPicture.add(JMenuItemCounterClockwise);
 
 
         //Build second menu in the menu bar.
-        jMenu = new JMenu("Algorithm");
-        jMenu.getAccessibleContext().setAccessibleDescription("All about the algorithms");
-        jMenuBar.add(jMenu);
+        jMenuAlgorithm = new JMenu("Algorithm");
+        jMenuAlgorithm.getAccessibleContext().setAccessibleDescription("All about the algorithms");
+        jMenuBar.add(jMenuAlgorithm);
 
         ButtonGroup group = new ButtonGroup();
         jRadioButtonMenuItemMandel = new JRadioButtonMenuItem("Mandelbrot");
@@ -228,13 +228,13 @@ public class GUI extends JFrame {
         jRadioButtonMenuItemMandel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK));
         jRadioButtonMenuItemMandel.addActionListener(e -> setAlgorithm(new Mandelbrot(gui)));
         group.add(jRadioButtonMenuItemMandel);
-        jMenu.add(jRadioButtonMenuItemMandel);
+        jMenuAlgorithm.add(jRadioButtonMenuItemMandel);
 
         jRadioButtonMenuItemJulia = new JRadioButtonMenuItem("Julia");
         jRadioButtonMenuItemJulia.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_MASK));
         jRadioButtonMenuItemJulia.addActionListener(e -> setAlgorithm(new Julia(gui)));
         group.add(jRadioButtonMenuItemJulia);
-        jMenu.add(jRadioButtonMenuItemJulia);
+        jMenuAlgorithm.add(jRadioButtonMenuItemJulia);
     }
 
     /**
@@ -277,10 +277,13 @@ public class GUI extends JFrame {
     }
 
     private void setAlgorithm(BaseAlgorithm algorithm) {
-        this.algorithm = algorithm;
+        if (!this.algorithm.getClass().equals(algorithm.getClass())) {
+            this.algorithm = algorithm;
 
-        //Calculates the Image in a new Thread
-        Thread thread = new Thread(new CalculationThread(gui));
-        thread.start();
+            //Calculates the Image in a new Thread
+            Thread thread = new Thread(new CalculationThread(gui));
+            thread.start();
+
+        }
     }
 }
