@@ -74,7 +74,7 @@ public class GUI extends JFrame {
         initComponents();
 
         //Calculates the Image in a new Thread
-        Thread thread = new Thread(new CalculationThread(gui));
+        Thread thread = new Thread(new CalculationThread());
         thread.start();
 
         this.setVisible(true);
@@ -116,7 +116,7 @@ public class GUI extends JFrame {
         createMenu();
 
         //Adds the action listener to the button
-        jButtonDraw.addActionListener(new CalculationListener(gui));
+        jButtonDraw.addActionListener(new CalculationListener());
 
         //Adds the action listener to the button
         jButtonExport.addActionListener(e -> ImageUtilities.saveImageAsJPG(((JButton) e.getSource()), image));
@@ -124,7 +124,7 @@ public class GUI extends JFrame {
         //Sets the picture label visible, that the size is shown, even while it's empty
         jLabelPicture.setVisible(true);
         //Adds mouse listener to picture
-        jLabelPicture.addMouseListener(new PictureClickListener(gui));
+        jLabelPicture.addMouseListener(new PictureClickListener());
 
         createTextFields(jPanelRight);
 
@@ -281,7 +281,7 @@ public class GUI extends JFrame {
             this.algorithm = algorithm;
 
             //Calculates the Image in a new Thread
-            Thread thread = new Thread(new CalculationThread(gui));
+            Thread thread = new Thread(new CalculationThread());
             thread.start();
 
         }

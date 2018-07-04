@@ -8,18 +8,12 @@ import java.awt.event.ActionListener;
 
 public class CalculationListener implements ActionListener {
 
-    private final GUI gui;
-
-    public CalculationListener(GUI gui) {
-        this.gui = gui;
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         //Shows calculating label
-        gui.jLabelLoading.setVisible(true);
+        GUI.gui.jLabelLoading.setVisible(true);
         //Stats an anonymous thread, where the image is calculated and drawn
-        Thread thread = new Thread(new CalculationThread(gui));
+        Thread thread = new Thread(new CalculationThread());
         thread.start();
     }
 }

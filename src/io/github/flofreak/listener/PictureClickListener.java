@@ -18,19 +18,13 @@ import java.awt.event.MouseListener;
  */
 public class PictureClickListener implements MouseListener {
 
-    private final GUI gui;
-
-    public PictureClickListener(GUI gui) {
-        this.gui = gui;
-    }
-
     @Override
     /*todo add the ability to click on image to recenter*/
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
         System.out.println(x + " " + y);
-        Thread t = new Thread(() -> gui.setImage(gui.getAlgorithm().calculate()));
+        Thread t = new Thread(() -> GUI.gui.setImage(GUI.gui.getAlgorithm().calculate()));
         t.start();
     }
 

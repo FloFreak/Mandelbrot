@@ -16,24 +16,14 @@ import io.github.flofreak.GUI;
  * @version v1.1
  */
 public class CalculationThread implements Runnable {
-    private final GUI gui;               //The GUI where everything will be displayed
-
-    /**
-     * The thread which calculates the image and draws it
-     *
-     * @param gui        the GUI where it should be displayed
-     */
-    public CalculationThread(GUI gui) {
-        this.gui = gui;
-    }
 
     /**
      * Calculates the image and let the GUI draw it
      */
     @Override
     public void run() {
-        gui.jLabelLoading.setVisible(true);
+        GUI.gui.jLabelLoading.setVisible(true);
         GUI.cfg.reload();
-        gui.setImage(gui.getAlgorithm().calculate());
+        GUI.gui.setImage(GUI.gui.getAlgorithm().calculate());
     }
 }
