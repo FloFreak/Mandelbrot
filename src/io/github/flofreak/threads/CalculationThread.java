@@ -33,6 +33,7 @@ public class CalculationThread implements Runnable {
     @Override
     public void run() {
         gui.jLabelLoading.setVisible(true);
+        GUI.cfg.reload();
         gui.setImage(gui.getAlgorithm().calculate());
     }
 }
