@@ -28,7 +28,7 @@ public class Julia extends BaseAlgorithm {
         double zx;
         double zy;
 
-        double zoom = 1;
+        double zoom = gui.getZoom();
 
         for (int x = 0; x < WIDTH; x++) {
             for (int y = 0; y < HEIGHT; y++) {
