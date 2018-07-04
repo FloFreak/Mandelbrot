@@ -10,6 +10,7 @@ package io.github.flofreak;
 //Imports
 
 import io.github.flofreak.algorithms.BaseAlgorithm;
+import io.github.flofreak.algorithms.Julia;
 import io.github.flofreak.algorithms.Mandelbrot;
 import io.github.flofreak.listener.CalculationListener;
 import io.github.flofreak.listener.PictureClickListener;
@@ -19,6 +20,8 @@ import io.github.flofreak.utilities.GUIUtilities;
 import io.github.flofreak.utilities.ImageUtilities;
 
 import javax.swing.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.text.NumberFormat;
 
@@ -36,20 +39,19 @@ public class GUI extends JFrame {
     //Constants for GUI size
     private static final int WIDTH = Integer.parseInt(cfg.getProperty("GUIWidth"));   //The width of the GUI
     private static final int HEIGHT = Integer.parseInt(cfg.getProperty("GUIHeight")); //The height of the GUI
-
-    //Declaration of the algorithm parts
-    private final BaseAlgorithm algorithm;           //The BaseAlgorithm algorithm
-    private BufferedImage image;                   //The image, in which will be drawn
-
     //Declaration of all GUI elements
     private final GUI gui;                          //The GUI
+    public JLabel jLabelLoading;                  //The label which shows the calculation is on going
+    //Declaration of the algorithm parts
+    private BaseAlgorithm algorithm;           //The BaseAlgorithm algorithm
+    private BufferedImage image;                   //The image, in which will be drawn
     private JFormattedTextField jTextFieldMinReal; //The text field for the minimum on the real axis
     private JFormattedTextField jTextFieldMaxReal; //The text field for the maximum on the real axis
     private JFormattedTextField jTextFieldMinImag; //The text field for the minimum on the imaginary axis
     private JFormattedTextField jTextFieldMaxImag; //The text field for the maximum on the imaginary axis
     private JFormattedTextField jTextFieldZoom;    //The text field for the zoom
     private JLabel jLabelPicture;                  //The label in which the image will be displayed
-    public JLabel jLabelLoading;                  //The label which shows the calculation is on going
+    private JMenuBar jMenuBar;
 
     /**
      * Constructor for the GUI
@@ -72,7 +74,7 @@ public class GUI extends JFrame {
         initComponents();
 
         //Calculates the Image in a new Thread
-        Thread thread = new Thread(new CalculationThread(gui, algorithm));
+        Thread thread = new Thread(new CalculationThread(gui));
         thread.start();
 
         this.setVisible(true);
@@ -111,8 +113,10 @@ public class GUI extends JFrame {
         //Sets the size to fit the BaseAlgorithm image size
         jPanelLeft.setSize(BaseAlgorithm.WIDTH, BaseAlgorithm.HEIGHT);
 
+        createMenu();
+
         //Adds the action listener to the button
-        jButtonDraw.addActionListener(new CalculationListener(gui, algorithm));
+        jButtonDraw.addActionListener(new CalculationListener(gui));
 
         //Adds the action listener to the button
         jButtonExport.addActionListener(e -> ImageUtilities.saveImageAsJPG(((JButton) e.getSource()), image));
@@ -120,7 +124,7 @@ public class GUI extends JFrame {
         //Sets the picture label visible, that the size is shown, even while it's empty
         jLabelPicture.setVisible(true);
         //Adds mouse listener to picture
-        jLabelPicture.addMouseListener(new PictureClickListener(gui, algorithm));
+        jLabelPicture.addMouseListener(new PictureClickListener(gui));
 
         createTextFields(jPanelRight);
 
@@ -139,6 +143,7 @@ public class GUI extends JFrame {
 
         //Adds the split panel to the frame
         this.add(jSplitPane);
+        this.setJMenuBar(jMenuBar);
     }
 
     /**
@@ -159,6 +164,7 @@ public class GUI extends JFrame {
 
     /**
      * Creates all text fields
+     *
      * @param jPanel the panel where ro add them
      */
     private void createTextFields(JPanel jPanel) {
@@ -177,6 +183,58 @@ public class GUI extends JFrame {
         GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Min Real"), jTextFieldMinReal);
         GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Max Real"), jTextFieldMaxReal);
         GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Zoom"), jTextFieldZoom);
+    }
+
+    private void createMenu() {
+        JMenu jMenu;
+        JMenuItem jMenuItemSave, JMenuItemClockwise, JMenuItemCounterClockwise;
+        JRadioButtonMenuItem jRadioButtonMenuItemMandel, jRadioButtonMenuItemJulia;
+
+        jMenuBar = new JMenuBar();  //Create the menu bar.
+
+        //Build the first menu.
+        jMenu = new JMenu("Picture");
+        jMenu.getAccessibleContext().setAccessibleDescription("All about the picture");
+        jMenuBar.add(jMenu);
+
+        //a group of JMenuItems
+        jMenuItemSave = new JMenuItem("Save");
+        jMenuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+        jMenuItemSave.addActionListener(e -> ImageUtilities.saveImageAsJPG(jMenuItemSave, image));
+        jMenu.add(jMenuItemSave);
+
+        //a group of radio button menu items
+        jMenu.addSeparator();
+
+        JMenuItemClockwise = new JMenuItem("Rotate Clockwise");
+        JMenuItemClockwise.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, InputEvent.CTRL_MASK));
+        JMenuItemClockwise.addActionListener(e -> setImage(ImageUtilities.turnClockwise(image)));
+        jMenu.add(JMenuItemClockwise);
+
+        JMenuItemCounterClockwise = new JMenuItem("Rotate Counterclockwise");
+        JMenuItemCounterClockwise.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, InputEvent.CTRL_MASK));
+        JMenuItemCounterClockwise.addActionListener(e -> setImage(ImageUtilities.turnCounterClockwise(image)));
+        jMenu.add(JMenuItemCounterClockwise);
+
+
+        //Build second menu in the menu bar.
+        jMenu = new JMenu("Algorithm");
+        jMenu.getAccessibleContext().setAccessibleDescription("All about the algorithms");
+        jMenuBar.add(jMenu);
+
+        ButtonGroup group = new ButtonGroup();
+        jRadioButtonMenuItemMandel = new JRadioButtonMenuItem("Mandelbrot");
+        jRadioButtonMenuItemMandel.setSelected(true);
+        jRadioButtonMenuItemMandel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK));
+        jRadioButtonMenuItemMandel.addActionListener(e -> setAlgorithm(new Mandelbrot(gui)));
+        group.add(jRadioButtonMenuItemMandel);
+        jMenu.add(jRadioButtonMenuItemMandel);
+
+        jRadioButtonMenuItemJulia = new JRadioButtonMenuItem("Julia");
+        jRadioButtonMenuItemJulia.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_MASK));
+        jRadioButtonMenuItemJulia.addActionListener(e -> setAlgorithm(new Julia(gui)));
+        group.add(jRadioButtonMenuItemJulia);
+        jMenu.add(jRadioButtonMenuItemJulia);
     }
 
     /**
@@ -214,4 +272,15 @@ public class GUI extends JFrame {
         return (double) jTextFieldMaxReal.getValue();
     }
 
+    public BaseAlgorithm getAlgorithm() {
+        return algorithm;
+    }
+
+    private void setAlgorithm(BaseAlgorithm algorithm) {
+        this.algorithm = algorithm;
+
+        //Calculates the Image in a new Thread
+        Thread thread = new Thread(new CalculationThread(gui));
+        thread.start();
+    }
 }

@@ -20,11 +20,9 @@ import java.awt.event.MouseListener;
 public class PictureClickListener implements MouseListener {
 
     private final GUI gui;
-    private final BaseAlgorithm algorithm;
 
-    public PictureClickListener(GUI gui, BaseAlgorithm algorithm) {
+    public PictureClickListener(GUI gui) {
         this.gui = gui;
-        this.algorithm = algorithm;
     }
 
     @Override
@@ -33,7 +31,7 @@ public class PictureClickListener implements MouseListener {
         int x = e.getX();
         int y = e.getY();
         System.out.println(x + " " + y);
-        Thread t = new Thread(() -> gui.setImage(algorithm.calculate()));
+        Thread t = new Thread(() -> gui.setImage(gui.getAlgorithm().calculate()));
         t.start();
     }
 

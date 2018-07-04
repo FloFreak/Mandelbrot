@@ -10,11 +10,9 @@ import java.awt.event.ActionListener;
 public class CalculationListener implements ActionListener {
 
     private final GUI gui;
-    private final BaseAlgorithm algorithm;
 
-    public CalculationListener(GUI gui, BaseAlgorithm algorithm) {
+    public CalculationListener(GUI gui) {
         this.gui = gui;
-        this.algorithm = algorithm;
     }
 
     @Override
@@ -22,7 +20,7 @@ public class CalculationListener implements ActionListener {
         //Shows calculating label
         gui.jLabelLoading.setVisible(true);
         //Stats an anonymous thread, where the image is calculated and drawn
-        Thread thread = new Thread(new CalculationThread(gui, algorithm));
+        Thread thread = new Thread(new CalculationThread(gui));
         thread.start();
     }
 }

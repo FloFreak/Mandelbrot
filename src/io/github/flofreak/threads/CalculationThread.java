@@ -18,17 +18,14 @@ import io.github.flofreak.algorithms.BaseAlgorithm;
  */
 public class CalculationThread implements Runnable {
     private final GUI gui;               //The GUI where everything will be displayed
-    private final BaseAlgorithm algorithm; //The algorithm where the image is calculated
 
     /**
      * The thread which calculates the image and draws it
      *
      * @param gui        the GUI where it should be displayed
-     * @param algorithm the algorithm
      */
-    public CalculationThread(GUI gui, BaseAlgorithm algorithm) {
+    public CalculationThread(GUI gui) {
         this.gui = gui;
-        this.algorithm = algorithm;
     }
 
     /**
@@ -37,6 +34,6 @@ public class CalculationThread implements Runnable {
     @Override
     public void run() {
         gui.jLabelLoading.setVisible(true);
-        gui.setImage(algorithm.calculate());
+        gui.setImage(gui.getAlgorithm().calculate());
     }
 }

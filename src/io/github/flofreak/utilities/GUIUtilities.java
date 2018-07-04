@@ -41,4 +41,5 @@ public class GUIUtilities {
 
         horizontalGroup.addGroup(sequentialGroup);
     }
+
 }
