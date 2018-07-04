@@ -26,7 +26,7 @@ public class Configuration {
     public Configuration() {
         properties = new Properties();
         try {
-            properties.load(this.getClass().getClassLoader().getResourceAsStream("config/config.properties"));
+            properties.load(this.getClass().getClassLoader().getResourceAsStream("io/github/flofreak/config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

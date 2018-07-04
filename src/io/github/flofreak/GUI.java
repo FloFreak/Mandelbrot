@@ -40,7 +40,7 @@ public class GUI extends JFrame {
     private static final int WIDTH = Integer.parseInt(cfg.getProperty("GUIWidth"));   //The width of the GUI
     private static final int HEIGHT = Integer.parseInt(cfg.getProperty("GUIHeight")); //The height of the GUI
     //Declaration of all GUI elements
-    private final GUI gui;                          //The GUI
+    public static GUI gui;                          //The GUI
     public JLabel jLabelLoading;                  //The label which shows the calculation is on going
     //Declaration of the algorithm parts
     private BaseAlgorithm algorithm;           //The BaseAlgorithm algorithm
@@ -61,8 +61,8 @@ public class GUI extends JFrame {
      */
     private GUI() {
         //Initialize all global variables
-        this.gui = this;
-        this.algorithm = new Mandelbrot(gui);
+        gui = this;
+        this.algorithm = new Mandelbrot();
 
         //Specifies the frame
         this.setTitle(cfg.getProperty("title"));
@@ -226,13 +226,13 @@ public class GUI extends JFrame {
         jRadioButtonMenuItemMandel = new JRadioButtonMenuItem("Mandelbrot");
         jRadioButtonMenuItemMandel.setSelected(true);
         jRadioButtonMenuItemMandel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK));
-        jRadioButtonMenuItemMandel.addActionListener(e -> setAlgorithm(new Mandelbrot(gui)));
+        jRadioButtonMenuItemMandel.addActionListener(e -> setAlgorithm(new Mandelbrot()));
         group.add(jRadioButtonMenuItemMandel);
         jMenuAlgorithm.add(jRadioButtonMenuItemMandel);
 
         jRadioButtonMenuItemJulia = new JRadioButtonMenuItem("Julia");
         jRadioButtonMenuItemJulia.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_MASK));
-        jRadioButtonMenuItemJulia.addActionListener(e -> setAlgorithm(new Julia(gui)));
+        jRadioButtonMenuItemJulia.addActionListener(e -> setAlgorithm(new Julia()));
         group.add(jRadioButtonMenuItemJulia);
         jMenuAlgorithm.add(jRadioButtonMenuItemJulia);
     }

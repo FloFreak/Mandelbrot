@@ -3,18 +3,13 @@
  */
 package io.github.flofreak.algorithms;
 
-import io.github.flofreak.GUI;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Julia extends BaseAlgorithm {
-    private final static int MAX = Integer.parseInt(GUI.cfg.getProperty("imgMaxIterations"));
+public class Julia implements BaseAlgorithm {
 
-    private final GUI gui;
+    public Julia() {
 
-    public Julia(GUI gui) {
-        this.gui = gui;
     }
 
     @Override

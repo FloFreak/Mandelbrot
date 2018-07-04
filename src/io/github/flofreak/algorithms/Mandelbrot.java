@@ -7,22 +7,14 @@
  */
 package io.github.flofreak.algorithms;
 
-import io.github.flofreak.GUI;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /*Todo add all comments and other conventions*/
-public class Mandelbrot extends BaseAlgorithm {
-    private final static int MAX = Integer.parseInt(GUI.cfg.getProperty("imgMaxIterations"));
-
+public class Mandelbrot implements BaseAlgorithm {
     private static final int[] colors = new int[MAX];
 
-    private final GUI gui;
-
-    public Mandelbrot(GUI gui) {
-        this.gui = gui;
-
+    public Mandelbrot() {
         for (int i = 0; i < MAX; i++)
             colors[i] = Color.HSBtoRGB(i / 120f, 1, i / (i + 5f));
     }
