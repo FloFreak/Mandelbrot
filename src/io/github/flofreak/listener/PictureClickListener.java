@@ -7,8 +7,6 @@
  */
 package io.github.flofreak.listener;
 
-import io.github.flofreak.GUI;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -21,11 +19,13 @@ public class PictureClickListener implements MouseListener {
     @Override
     /*todo add the ability to click on image to recenter*/
     public void mouseClicked(MouseEvent e) {
+        /*
         int x = e.getX();
         int y = e.getY();
         System.out.println(x + " " + y);
         Thread t = new Thread(() -> GUI.gui.setImage(GUI.gui.getAlgorithm().calculate()));
         t.start();
+        */
     }
 
     @Override

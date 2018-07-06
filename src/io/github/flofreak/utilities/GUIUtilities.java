@@ -17,7 +17,8 @@ public class GUIUtilities {
             //Sets default value
             field.setValue(value);
             //Sets columns
-            field.setColumns(10);
+            field.setColumns(5);
+            field.setHorizontalAlignment(JTextField.CENTER);
             //Adds listener which converts, if possible all inputs to an double
             field.addPropertyChangeListener("value",
                     e -> ((JFormattedTextField) e.getSource()).setValue(((Number) e.getNewValue()).doubleValue()));
@@ -27,19 +28,26 @@ public class GUIUtilities {
     /**
      * Adds to a horizontal group in the group layout
      *
-     * @param groupLayout     the group layout where to add to
-     * @param horizontalGroup the horizontal group
-     * @param components      the components to add to one horizontal group
+     * @param groupLayout   the group layout where to add to
+     * @param verticalgroup the horizontal group
+     * @param components    the components to add to one horizontal group
      */
-    public static void createHorizontalGroup(GroupLayout groupLayout, GroupLayout.ParallelGroup horizontalGroup,
-                                             Component... components) {
+    public static void createVerticalGroup(GroupLayout groupLayout, GroupLayout.ParallelGroup verticalgroup,
+                                           Component... components) {
         GroupLayout.SequentialGroup sequentialGroup = groupLayout.createSequentialGroup();
 
         for (Component component : components) {
             sequentialGroup.addComponent(component);
         }
 
-        horizontalGroup.addGroup(sequentialGroup);
+        verticalgroup.addGroup(sequentialGroup);
+    }
+
+    public static void changeFontSize(double value, Component... components) {
+        for (Component component : components) {
+            component.setFont(new Font("Multiplied by " + value, component.getFont().getStyle(),
+                    (int) (component.getFont().getSize() * value)));
+        }
     }
 
 }

@@ -23,7 +23,6 @@ import javax.swing.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.text.NumberFormat;
 
 /**
  * The GUI class where everything is displayed
@@ -102,13 +101,14 @@ public class GUI extends JFrame {
         JPanel jPanelRight = new JPanel();
         jLabelPicture = new JLabel();
         jLabelLoading = new JLabel("Calculating...");
-        jTextFieldMaxImag = new JFormattedTextField(NumberFormat.getNumberInstance());
-        jTextFieldMinImag = new JFormattedTextField(NumberFormat.getNumberInstance());
-        jTextFieldMaxReal = new JFormattedTextField(NumberFormat.getNumberInstance());
-        jTextFieldMinReal = new JFormattedTextField(NumberFormat.getNumberInstance());
-        jTextFieldZoom = new JFormattedTextField(NumberFormat.getNumberInstance());
+        jTextFieldMaxImag = new JFormattedTextField(0);
+        jTextFieldMinImag = new JFormattedTextField(0);
+        jTextFieldMaxReal = new JFormattedTextField(0);
+        jTextFieldMinReal = new JFormattedTextField(0);
+        jTextFieldZoom = new JFormattedTextField(0);
         JButton jButtonDraw = new JButton("Draw");
         JButton jButtonExport = new JButton("Export");
+
 
         //Sets the size to fit the BaseAlgorithm image size
         jPanelLeft.setSize(BaseAlgorithm.WIDTH, BaseAlgorithm.HEIGHT);
@@ -129,6 +129,7 @@ public class GUI extends JFrame {
         createTextFields(jPanelRight);
 
         //Adds all menu components to the menu panel
+        jPanelRight.add(new JSeparator(SwingConstants.HORIZONTAL));
         jPanelRight.add(jButtonExport);
         jPanelRight.add(jButtonDraw);
         jPanelRight.add(jLabelLoading);
@@ -144,6 +145,8 @@ public class GUI extends JFrame {
         //Adds the split panel to the frame
         this.add(jSplitPane);
         this.setJMenuBar(jMenuBar);
+
+        GUIUtilities.changeFontSize(1.5, jLabelLoading, jButtonDraw, jButtonExport);
     }
 
     /**
@@ -175,19 +178,27 @@ public class GUI extends JFrame {
 
         //Initialize an group layout for the input fields
         GroupLayout groupLayout = new GroupLayout(jPanel);
-        GroupLayout.ParallelGroup horizontalGroup = groupLayout.createParallelGroup();
+        GroupLayout.ParallelGroup verticalgroup = groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE);
+
+        JLabel jLabelMinImag = new JLabel("Min Imag");
+        JLabel jLabelMaxImag = new JLabel("Max Imag");
+        JLabel jLabelMinReal = new JLabel("Min Real");
+        JLabel jLabelMaxReal = new JLabel("Max Real");
+        JLabel jLabelZoom = new JLabel("Zoomfactor");
+
+        GUIUtilities.changeFontSize(1.5, jLabelMinImag, jLabelMaxImag, jLabelMinReal, jLabelMaxReal, jLabelZoom);
 
         //Groups all input fields with its labels
-        GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Min Imag"), jTextFieldMinImag);
-        GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Max Imag"), jTextFieldMaxImag);
-        GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Min Real"), jTextFieldMinReal);
-        GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Max Real"), jTextFieldMaxReal);
-        GUIUtilities.createHorizontalGroup(groupLayout, horizontalGroup, new JLabel("Zoom"), jTextFieldZoom);
+        GUIUtilities.createVerticalGroup(groupLayout, verticalgroup, jLabelMinImag, jTextFieldMinImag);
+        GUIUtilities.createVerticalGroup(groupLayout, verticalgroup, jLabelMaxImag, jTextFieldMaxImag);
+        GUIUtilities.createVerticalGroup(groupLayout, verticalgroup, jLabelMinReal, jTextFieldMinReal);
+        GUIUtilities.createVerticalGroup(groupLayout, verticalgroup, jLabelMaxReal, jTextFieldMaxReal);
+        GUIUtilities.createVerticalGroup(groupLayout, verticalgroup, jLabelZoom, jTextFieldZoom);
     }
 
     private void createMenu() {
         JMenu jMenuPicture, jMenuAlgorithm;
-        JMenuItem jMenuItemSave, JMenuItemClockwise, JMenuItemCounterClockwise;
+        JMenuItem jMenuItemSave, JMenuItemClockwise, JMenuItemCounterClockwise, jMenuItemRecalculate;
         JRadioButtonMenuItem jRadioButtonMenuItemMandel, jRadioButtonMenuItemJulia;
 
         jMenuBar = new JMenuBar();  //Create the menu bar.
@@ -221,6 +232,18 @@ public class GUI extends JFrame {
         jMenuAlgorithm = new JMenu("Algorithm");
         jMenuAlgorithm.getAccessibleContext().setAccessibleDescription("All about the algorithms");
         jMenuBar.add(jMenuAlgorithm);
+
+        //a group of JMenuItems
+        jMenuItemRecalculate = new JMenuItem("Recalculate");
+        jMenuItemRecalculate.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
+        jMenuItemRecalculate.addActionListener(e -> {
+            Thread thread = new Thread(new CalculationThread());
+            thread.start();
+        });
+        jMenuAlgorithm.add(jMenuItemRecalculate);
+
+        //a group of radio button menu items
+        jMenuAlgorithm.addSeparator();
 
         ButtonGroup group = new ButtonGroup();
         jRadioButtonMenuItemMandel = new JRadioButtonMenuItem("Mandelbrot");
