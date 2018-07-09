@@ -35,25 +35,21 @@ public class Mandelbrot implements BaseAlgorithm {
 
         for (int row = 0; row < HEIGHT; row++) {
             for (int col = 0; col < WIDTH; col++) {
-                double complexImaginary = (row - HEIGHT / 2) * zoom / WIDTH;
-                double complexReal = (col - WIDTH / 2) * zoom / WIDTH;
-                int iterations = 0;
 
-                double x = 0;
-                double y = 0;
+                double complexReal = (col - WIDTH / 2.0) * zoom / WIDTH;
+                double complexImaginary = (row - HEIGHT / 2.0) * zoom / HEIGHT;
 
-                while (x * x + y * y < zoom && iterations < MAX) {
-                    double x_new = x * x - y * y + complexReal;
+                double x = 0, y = 0;
+                int iteration = 0;
+
+                while (x * x + y * y <= 4 && iteration < MAX) {
+                    double newX = x * x - y * y + complexReal;
                     y = 2 * x * y + complexImaginary;
-                    x = x_new;
-                    iterations++;
+                    x = newX;
+                    iteration++;
                 }
-
-                if (iterations < MAX) {
-                    image.setRGB(col, row, colors[iterations]);
-                } else {
-                    image.setRGB(col, row, 0x000000);
-                }
+                if (iteration < MAX) image.setRGB(col, row, colors[iteration]);
+                else image.setRGB(col, row, 0x000000);
             }
         }
         return image;
