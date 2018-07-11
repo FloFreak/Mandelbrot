@@ -44,24 +44,4 @@ public class Julia implements BaseAlgorithm {
         }
         return image;
     }
-
-    @Override
-    public double getRealCenter() {
-        return realCenter;
-    }
-
-    @Override
-    public double getImagCenter() {
-        return imagCenter;
-    }
-
-    @Override
-    public void setRealCenter(double center) {
-        realCenter = center;
-    }
-
-    @Override
-    public void setImagCenter(double center) {
-        imagCenter = center;
-    }
 }

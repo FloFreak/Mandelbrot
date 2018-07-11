@@ -14,8 +14,8 @@ import java.awt.image.BufferedImage;
 public class Mandelbrot implements BaseAlgorithm {
     private static final int[] colors = new int[MAX];
 
-    double imagCenter = 0;
-    double realCenter = 0;
+    private double offsetx = -WIDTH / 2;
+    private double offsety = -HEIGHT / 2;
 
     public Mandelbrot() {
         for (int i = 0; i < MAX; i++)
@@ -25,55 +25,42 @@ public class Mandelbrot implements BaseAlgorithm {
     public BufferedImage calculate() {
         /*todo add the min and max selections*/
         /*todo inputs must eventually be not 0*/
-        /*todo decide weather zoom > 1 is a zoom out*/
-        /*todo must zoom and axis be depended?*/
-        double zoom = gui.getZoom();
-
-        double minImag = gui.getMinImag();
-        double maxImag = gui.getMaxImag();
-
-        double minReal = gui.getMinReal();
-        double maxReal = gui.getMaxReal();
+        /*todo must zoom must change axes*/
+        double zoom = (gui.getZoom() == 0) ? 0.000001 : gui.getZoom();
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-        for (int row = 0; row < HEIGHT; row++) {
-            for (int col = 0; col < WIDTH; col++) {
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                // Convert the screen coordinate to a fractal coordinate
+                double panx = -100;
+                double x0 = (x + offsetx + panx) / zoom;
+                double pany = 0;
+                double y0 = (y + offsety + pany) / zoom;
 
-                double complexReal = (col - WIDTH / 2.0) * zoom / WIDTH;
-                complexReal += realCenter;
-                double complexImaginary = (row - HEIGHT / 2.0) * zoom / HEIGHT;
-                complexImaginary += imagCenter;
+                // Iteration variables
+                double a = 0;
+                double b = 0;
+                double rx = 0;
+                double ry = 0;
 
-                double x = 0, y = 0;
-                int iteration = 0;
+                // Iterate
+                int iterations = 0;
+                while (iterations < MAX && (rx * rx + ry * ry <= 4)) {
+                    rx = a * a - b * b + x0;
+                    ry = 2 * a * b + y0;
 
-                while (x * x + y * y <= 4 && iteration < MAX) {
-                    double newX = x * x - y * y + complexReal;
-                    y = 2 * x * y + complexImaginary;
-                    x = newX;
-                    iteration++;
+                    // Next iteration
+                    a = rx;
+                    b = ry;
+                    iterations++;
                 }
-                if (iteration < MAX) image.setRGB(col, row, colors[iteration]);
-                else image.setRGB(col, row, 0x000000);
+
+                // Get palette color based on the number of iterations
+                if (iterations == MAX) image.setRGB(x, y, 0x000000); // Black
+                else image.setRGB(x, y, colors[iterations]);
             }
         }
         return image;
-    }
-
-    public double getRealCenter() {
-        return realCenter;
-    }
-
-    public void setRealCenter(double center) {
-        realCenter = center;
-    }
-
-    public double getImagCenter() {
-        return imagCenter;
-    }
-
-    public void setImagCenter(double center) {
-        imagCenter = center;
     }
 }

@@ -13,10 +13,4 @@ public interface BaseAlgorithm {
     GUI gui = GUI.gui;
 
     BufferedImage calculate();
-
-    double getRealCenter();
-    double getImagCenter();
-
-    void setRealCenter(double center);
-    void setImagCenter(double center);
 }
