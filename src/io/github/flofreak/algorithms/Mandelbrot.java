@@ -14,8 +14,8 @@ import java.awt.image.BufferedImage;
 public class Mandelbrot implements BaseAlgorithm {
     private static final int[] colors = new int[MAX];
 
-    private double offsetx = -WIDTH / 2;
-    private double offsety = -HEIGHT / 2;
+    private final double offsetx = -WIDTH / 2;
+    private final double offsety = -HEIGHT / 2;
 
     public Mandelbrot() {
         for (int i = 0; i < MAX; i++)
