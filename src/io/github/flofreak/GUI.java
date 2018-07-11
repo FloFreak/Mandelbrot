@@ -12,7 +12,6 @@ package io.github.flofreak;
 import io.github.flofreak.algorithms.BaseAlgorithm;
 import io.github.flofreak.algorithms.Julia;
 import io.github.flofreak.algorithms.Mandelbrot;
-import io.github.flofreak.algorithms.MandelbrotV2;
 import io.github.flofreak.listener.CalculationListener;
 import io.github.flofreak.listener.PictureClickListener;
 import io.github.flofreak.threads.CalculationThread;
@@ -63,7 +62,7 @@ public class GUI extends JFrame {
     private GUI() {
         //Initialize all global variables
         gui = this;
-        this.algorithm = new MandelbrotV2();
+        this.algorithm = new Mandelbrot();
 
         //Specifies the frame
         this.setTitle(cfg.getProperty("title"));
