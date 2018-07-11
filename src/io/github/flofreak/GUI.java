@@ -23,6 +23,7 @@ import javax.swing.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.text.NumberFormat;
 
 /**
  * The GUI class where everything is displayed
@@ -101,13 +102,15 @@ public class GUI extends JFrame {
         JPanel jPanelRight = new JPanel();
         jLabelPicture = new JLabel();
         jLabelLoading = new JLabel("Calculating...");
-        jTextFieldMaxImag = new JFormattedTextField(0);
-        jTextFieldMinImag = new JFormattedTextField(0);
-        jTextFieldMaxReal = new JFormattedTextField(0);
-        jTextFieldMinReal = new JFormattedTextField(0);
-        jTextFieldZoom = new JFormattedTextField(0);
+        jTextFieldMaxImag = new JFormattedTextField(NumberFormat.getNumberInstance());
+        jTextFieldMinImag = new JFormattedTextField(NumberFormat.getNumberInstance());
+        jTextFieldMaxReal = new JFormattedTextField(NumberFormat.getNumberInstance());
+        jTextFieldMinReal = new JFormattedTextField(NumberFormat.getNumberInstance());
+        jTextFieldZoom = new JFormattedTextField(NumberFormat.getNumberInstance());
         JButton jButtonDraw = new JButton("Draw");
         JButton jButtonExport = new JButton("Export");
+        JLabel jLabelInformation = new JLabel("<html>You can click on the Image<br> and where you've clicked, will" +
+                "<br> be the new image center!<br></html>");
 
 
         //Sets the size to fit the BaseAlgorithm image size
@@ -132,6 +135,7 @@ public class GUI extends JFrame {
         jPanelRight.add(new JSeparator(SwingConstants.HORIZONTAL));
         jPanelRight.add(jButtonExport);
         jPanelRight.add(jButtonDraw);
+        jPanelRight.add(jLabelInformation);
         jPanelRight.add(jLabelLoading);
 
         //Adds the picture label to the picture panel

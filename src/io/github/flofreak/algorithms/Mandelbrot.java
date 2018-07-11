@@ -14,6 +14,9 @@ import java.awt.image.BufferedImage;
 public class Mandelbrot implements BaseAlgorithm {
     private static final int[] colors = new int[MAX];
 
+    double imagCenter = 0;
+    double realCenter = 0;
+
     public Mandelbrot() {
         for (int i = 0; i < MAX; i++)
             colors[i] = Color.HSBtoRGB(i / 120f, 1, i / (i + 5f));
@@ -23,13 +26,14 @@ public class Mandelbrot implements BaseAlgorithm {
         /*todo add the min and max selections*/
         /*todo inputs must eventually be not 0*/
         /*todo decide weather zoom > 1 is a zoom out*/
-        /*todo zoom and axis must be depended?*/
+        /*todo must zoom and axis be depended?*/
         double zoom = gui.getZoom();
+
         double minImag = gui.getMinImag();
         double maxImag = gui.getMaxImag();
+
         double minReal = gui.getMinReal();
         double maxReal = gui.getMaxReal();
-        System.out.println(minImag + " " + maxImag + " " + minReal + " " + maxReal);
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
@@ -37,7 +41,9 @@ public class Mandelbrot implements BaseAlgorithm {
             for (int col = 0; col < WIDTH; col++) {
 
                 double complexReal = (col - WIDTH / 2.0) * zoom / WIDTH;
+                complexReal += realCenter;
                 double complexImaginary = (row - HEIGHT / 2.0) * zoom / HEIGHT;
+                complexImaginary += imagCenter;
 
                 double x = 0, y = 0;
                 int iteration = 0;
@@ -53,5 +59,21 @@ public class Mandelbrot implements BaseAlgorithm {
             }
         }
         return image;
+    }
+
+    public double getRealCenter() {
+        return realCenter;
+    }
+
+    public void setRealCenter(double center) {
+        realCenter = center;
+    }
+
+    public double getImagCenter() {
+        return imagCenter;
+    }
+
+    public void setImagCenter(double center) {
+        imagCenter = center;
     }
 }

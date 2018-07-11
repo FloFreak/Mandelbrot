@@ -8,6 +8,9 @@ import java.awt.image.BufferedImage;
 
 public class Julia implements BaseAlgorithm {
 
+    double imagCenter = 0;
+    double realCenter = 0;
+
     public Julia() {
 
     }
@@ -40,5 +43,25 @@ public class Julia implements BaseAlgorithm {
             }
         }
         return image;
+    }
+
+    @Override
+    public double getRealCenter() {
+        return realCenter;
+    }
+
+    @Override
+    public double getImagCenter() {
+        return imagCenter;
+    }
+
+    @Override
+    public void setRealCenter(double center) {
+        realCenter = center;
+    }
+
+    @Override
+    public void setImagCenter(double center) {
+        imagCenter = center;
     }
 }

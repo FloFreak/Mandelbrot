@@ -17,7 +17,7 @@ public class GUIUtilities {
             //Sets default value
             field.setValue(value);
             //Sets columns
-            field.setColumns(5);
+            field.setPreferredSize(new Dimension(100, 20));
             field.setHorizontalAlignment(JTextField.CENTER);
             //Adds listener which converts, if possible all inputs to an double
             field.addPropertyChangeListener("value",
