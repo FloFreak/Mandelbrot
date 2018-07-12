@@ -26,39 +26,48 @@ public class Mandelbrot implements BaseAlgorithm {
         /*todo add the min and max selections*/
         /*todo inputs must eventually be not 0*/
         /*todo must zoom must change axes*/
-        double zoom = (gui.getZoom() == 0) ? 0.000001 : gui.getZoom();
+        //abfangen von eingabefehlern//
+
+        double zoom = gui.getZoom();
+        double maxreal = gui.getMaxReal();
+        double minreal = gui.getMinReal();
+        double maximg = gui.getMaxImag();
+        double minimg = gui.getMinImag();
+
+        double realfactor = (maxreal - minreal) / WIDTH ;
+        double imgfactor = (maximg - minimg) / HEIGHT ;
+
 
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
-                // Convert the screen coordinate to a fractal coordinate
-                double panx = -100;
-                double x0 = (x + offsetx + panx) / zoom;
-                double pany = 0;
-                double y0 = (y + offsety + pany) / zoom;
+        for (int row = 0; row < HEIGHT; row ++) {
+            for (int column = 0; column < WIDTH; column ++) {
+
+                double c_real = minreal + (column * realfactor);
+                double c_img = maximg - (row * imgfactor);
+
 
                 // Iteration variables
-                double a = 0;
-                double b = 0;
-                double rx = 0;
-                double ry = 0;
+                double z_real = 0;
+                double z_img = 0;
 
                 // Iterate
                 int iterations = 0;
-                while (iterations < MAX && (rx * rx + ry * ry <= 4)) {
-                    rx = a * a - b * b + x0;
-                    ry = 2 * a * b + y0;
+                while (iterations < MAX && (z_real * z_real + z_img * z_img <= 4)) {
+
+                    double new_z_real = z_real * z_real - z_img * z_img + c_real;
+                    double new_z_img = 2 * z_real * z_img + c_img;
 
                     // Next iteration
-                    a = rx;
-                    b = ry;
-                    iterations++;
+                    z_real = new_z_real;
+                    z_img = new_z_img;
+                    iterations ++;
+
                 }
 
                 // Get palette color based on the number of iterations
-                if (iterations == MAX) image.setRGB(x, y, 0x000000); // Black
-                else image.setRGB(x, y, colors[iterations]);
+                if (iterations == MAX) image.setRGB(column, row, 0x000000); // Black
+                else image.setRGB(column, row, colors[iterations]);
             }
         }
         return image;
