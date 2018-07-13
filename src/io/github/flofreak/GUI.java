@@ -314,23 +314,23 @@ public class GUI extends JFrame {
         }
     }
 
-    public void setMinReal(String value) {
+    public void setMinReal(double value) {
         this.jTextFieldMinReal.setValue(value);
     }
 
-    public void setMaxReal(String value) {
-        this.jTextFieldMaxReal.setValue(value);
+    public void setMaxReal(double value) {
+        jTextFieldMaxReal.setValue(value);
     }
 
-    public void setMinImag(String value) {
+    public void setMinImag(double value) {
         this.jTextFieldMinImag.setValue(value);
     }
 
-    public void setMaxImag(String value) {
+    public void setMaxImag(double value) {
         this.jTextFieldMaxImag.setValue(value);
     }
 
-    public void setZoom(String value) {
+    public void setZoom(double value) {
         this.jTextFieldZoom.setValue(value);
     }
 }

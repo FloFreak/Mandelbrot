@@ -12,10 +12,8 @@ import java.awt.image.BufferedImage;
 
 /*Todo add all comments and other conventions*/
 public class Mandelbrot implements BaseAlgorithm {
-    private static final int[] colors = new int[MAX];
 
-    private final double offsetx = -WIDTH / 2;
-    private final double offsety = -HEIGHT / 2;
+    private static final int[] colors = new int[MAX];
 
     public Mandelbrot() {
         for (int i = 0; i < MAX; i++)
@@ -26,9 +24,9 @@ public class Mandelbrot implements BaseAlgorithm {
         /*todo add the min and max selections*/
         /*todo inputs must eventually be not 0*/
         /*todo must zoom must change axes*/
-        //abfangen von eingabefehlern//
+        //abfangen von eingabefehlern//##
+        //punkt anzeigen//
 
-        double zoom = gui.getZoom();
         double maxreal = gui.getMaxReal();
         double minreal = gui.getMinReal();
         double maximg = gui.getMaxImag();
