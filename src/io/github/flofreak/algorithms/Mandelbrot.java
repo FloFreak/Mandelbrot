@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 /*Todo add all comments and other conventions*/
 public class Mandelbrot implements BaseAlgorithm {
 
-    private static final int[] colors = new int[MAX];
+    private  final int[] colors = new int[MAX];
 
     public Mandelbrot() {
         for (int i = 0; i < MAX; i++)

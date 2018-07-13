@@ -18,7 +18,6 @@ import java.util.Properties;
  */
 public class Configuration {
 
-    private static final String PATH = "io/github/flofreak/config.properties";
     private final Properties properties;
 
     /**
@@ -27,6 +26,7 @@ public class Configuration {
     public Configuration() {
         properties = new Properties();
         try {
+            String PATH = "io/github/flofreak/config.properties";
             properties.load(this.getClass().getClassLoader().getResourceAsStream(PATH));
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,11 +43,4 @@ public class Configuration {
         return properties.getProperty(key);
     }
 
-    public void reload() {
-        try {
-            properties.load(this.getClass().getClassLoader().getResourceAsStream(PATH));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

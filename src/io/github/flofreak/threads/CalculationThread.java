@@ -7,7 +7,7 @@
  */
 package io.github.flofreak.threads;
 
-import io.github.flofreak.GUI;
+import io.github.flofreak.gui.GUI;
 
 /**
  * The Thread which calculates and draw the image
@@ -22,7 +22,7 @@ public class CalculationThread implements Runnable {
      */
     @Override
     public void run() {
-        GUI.gui.jLabelLoading.setVisible(true);
-        GUI.gui.setImage(GUI.gui.getAlgorithm().calculate());
+        GUI.rightPanel.jLabelLoading.setVisible(true);
+        GUI.setImage(GUI.gui.getAlgorithm().calculate());
     }
 }

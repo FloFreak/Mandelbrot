@@ -1,6 +1,6 @@
 package io.github.flofreak.algorithms;
 
-import io.github.flofreak.GUI;
+import io.github.flofreak.gui.GUI;
 
 import java.awt.image.BufferedImage;
 

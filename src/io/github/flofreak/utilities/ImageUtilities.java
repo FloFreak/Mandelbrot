@@ -1,6 +1,6 @@
 package io.github.flofreak.utilities;
 
-import io.github.flofreak.GUI;
+import io.github.flofreak.gui.GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

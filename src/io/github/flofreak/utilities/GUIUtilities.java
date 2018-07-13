@@ -7,15 +7,12 @@ public class GUIUtilities {
     /**
      * Changes the text fields to only accept doubles
      *
-     * @param value  the default value
      * @param fields the text fields
      */
-    public static void createDoubleOnlyJTextField(double value, JFormattedTextField... fields) {
+    public static void changeToDoubleOnlyJTextField(JFormattedTextField... fields) {
 
         //Loops all text fields
         for (JFormattedTextField field : fields) {
-            //Sets default value
-            field.setValue(value);
             //Sets columns
             field.setPreferredSize(new Dimension(100, 20));
             field.setHorizontalAlignment(JTextField.CENTER);

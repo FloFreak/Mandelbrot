@@ -10,11 +10,9 @@ package io.github.flofreak.listener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 
-import io.github.flofreak.GUI;
+import io.github.flofreak.gui.GUI;
 import io.github.flofreak.algorithms.BaseAlgorithm;
-import io.github.flofreak.algorithms.Mandelbrot;
 import io.github.flofreak.threads.CalculationThread;
 
 /**
@@ -51,10 +49,10 @@ public class PictureClickListener implements MouseListener {
             maximg = y + difY;
             minimg = y - difY;
 
-            GUI.gui.setMinImag(minimg);
-            GUI.gui.setMaxImag(maximg);
-            GUI.gui.setMinReal(minreal);
-            GUI.gui.setMaxReal(maxreal);
+            GUI.setMinImag(minimg);
+            GUI.setMaxImag(maximg);
+            GUI.setMinReal(minreal);
+            GUI.setMaxReal(maxreal);
 
             Thread thread = new Thread(new CalculationThread());
             thread.start();
