@@ -25,8 +25,6 @@ public class RightPanel extends JPanel {
         jTextFieldMinReal = new JFormattedTextField(NumberFormat.getNumberInstance());
         jTextFieldZoom = new JFormattedTextField(NumberFormat.getNumberInstance());
 
-        setDefaultValues();
-
         JButton jButtonDraw = new JButton("Draw");
         JButton jButtonExport = new JButton("Export");
         JLabel jLabelInformation = new JLabel(

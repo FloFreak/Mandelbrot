@@ -57,13 +57,16 @@ public class GUI extends JFrame {
 
         //Specifies the frame
         this.setTitle(cfg.getProperty("title"));
+
         //The height of the GUI
         int HEIGHT = Integer.parseInt(cfg.getProperty("GUIHeight"));//Constants for GUI size
-//The width of the GUI
+        //The width of the GUI
         int WIDTH = Integer.parseInt(cfg.getProperty("GUIWidth"));
         this.setSize(WIDTH, HEIGHT);
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        rightPanel.setDefaultValues();
 
         //Adds all Components to the frame
         initComponents();
@@ -167,9 +170,7 @@ public class GUI extends JFrame {
         rightPanel.jTextFieldMinImag.setValue(value);
     }
 
-    public static void setMaxImag(double value) {
-        rightPanel.jTextFieldMaxImag.setValue(value);
-    }
+    public static void setMaxImag(double value) {rightPanel.jTextFieldMaxImag.setValue(value);}
 
     static void setZoom(double value) {
         rightPanel.jTextFieldZoom.setValue(value);
