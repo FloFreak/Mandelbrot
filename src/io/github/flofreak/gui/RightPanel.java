@@ -29,9 +29,10 @@ public class RightPanel extends JPanel {
         JButton jButtonExport = new JButton("Export");
         JLabel jLabelInformation = new JLabel(
                 "<html>" +
-                        "You can click on the Image<br>" +
+                        "You can double click the Image<br>" +
                         "and where you've clicked, will<br>" +
-                        "be the new image center!<br>" +
+                        "be the new image center<br>" +
+                        "and the zoom is set!<br>" +
                         "</html>"
         );
 

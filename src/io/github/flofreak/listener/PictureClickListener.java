@@ -7,13 +7,12 @@
  */
 package io.github.flofreak.listener;
 
-import java.awt.*;
+import io.github.flofreak.algorithms.BaseAlgorithm;
+import io.github.flofreak.gui.GUI;
+import io.github.flofreak.threads.CalculationThread;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import io.github.flofreak.gui.GUI;
-import io.github.flofreak.algorithms.BaseAlgorithm;
-import io.github.flofreak.threads.CalculationThread;
 
 /**
  * The listener for clicking the picture
@@ -23,9 +22,8 @@ public class PictureClickListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
-            Point point = e.getPoint();
-            double column = point.x;
-            double row = point.y;
+            double column = e.getX();
+            double row = e.getY();
 
             double zoom = GUI.gui.getZoom();
             double maxreal = GUI.gui.getMaxReal();
@@ -39,8 +37,15 @@ public class PictureClickListener implements MouseListener {
             double x = minreal + (column * realfactor);
             double y = maximg - (row * imgfactor);
 
-            double difX = (maxreal - minreal)/(zoom*2);
-            double difY = (maximg - minimg)/(zoom*2);
+            double difY = 0;
+            double difX = 0;
+            if (e.getButton() == 1) {
+                difX = (maxreal - minreal) / (zoom * 2);
+                difY = (maximg - minimg) / (zoom * 2);
+            } else if (e.getButton() == 3) {
+                difX = (maxreal - minreal) * (zoom / 2);
+                difY = (maximg - minimg) * (zoom / 2);
+            }
 
             maxreal = x + difX;
             minreal = x - difX;
@@ -54,7 +59,6 @@ public class PictureClickListener implements MouseListener {
 
             Thread thread = new Thread(new CalculationThread());
             thread.start();
-
         }
     }
 
