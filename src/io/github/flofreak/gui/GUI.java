@@ -17,6 +17,10 @@ import io.github.flofreak.utilities.Configuration;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
+/*
+    ToDo add all comments and other conventions
+ */
+
 /**
  * The GUI class where everything is displayed
  * The main class

@@ -17,12 +17,10 @@ import io.github.flofreak.threads.CalculationThread;
 
 /**
  * The listener for clicking the picture
- * todo Comments
  */
 public class PictureClickListener implements MouseListener {
 
     @Override
-    /*todo add the ability to click on image to recenter*/
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
             Point point = e.getPoint();

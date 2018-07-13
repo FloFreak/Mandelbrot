@@ -10,7 +10,6 @@ package io.github.flofreak.algorithms;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/*Todo add all comments and other conventions*/
 public class Mandelbrot implements BaseAlgorithm {
 
     private  final int[] colors = new int[MAX];
@@ -21,11 +20,7 @@ public class Mandelbrot implements BaseAlgorithm {
     }
 
     public BufferedImage calculate() {
-        /*todo add the min and max selections*/
-        /*todo inputs must eventually be not 0*/
-        /*todo must zoom must change axes*/
-        //abfangen von eingabefehlern//##
-        //punkt anzeigen//
+        //todo punkt anzeigen
 
         double maxreal = gui.getMaxReal();
         double minreal = gui.getMinReal();
