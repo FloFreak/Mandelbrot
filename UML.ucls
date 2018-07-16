@@ -3,124 +3,202 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="io.github.flofreak.listener.PictureClickListener" project="Mandelbrot" 
     file="/Mandelbrot/src/io/github/flofreak/listener/PictureClickListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="146" y="537"/>    
+    <position height="-1" width="-1" x="147" y="101"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="io.github.flofreak.utilities.ImageUtilities" project="Mandelbrot" 
+  <class id="2" language="java" name="io.github.flofreak.algorithms.Mandelbrot" project="Mandelbrot" 
+    file="/Mandelbrot/src/io/github/flofreak/algorithms/Mandelbrot.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1551" y="72"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="io.github.flofreak.gui.LeftPanel" project="Mandelbrot" 
+    file="/Mandelbrot/src/io/github/flofreak/gui/LeftPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="654" y="497"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="io.github.flofreak.gui.GUI" project="Mandelbrot" 
+    file="/Mandelbrot/src/io/github/flofreak/gui/GUI.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="954" y="234"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="io.github.flofreak.gui.Menu" project="Mandelbrot" 
+    file="/Mandelbrot/src/io/github/flofreak/gui/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1401" y="423"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="io.github.flofreak.gui.RightPanel" project="Mandelbrot" 
+    file="/Mandelbrot/src/io/github/flofreak/gui/RightPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="918" y="653"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="io.github.flofreak.listener.CoordinateListener" project="Mandelbrot" 
+    file="/Mandelbrot/src/io/github/flofreak/listener/CoordinateListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="145" y="294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="io.github.flofreak.threads.CalculationThread" project="Mandelbrot" 
+    file="/Mandelbrot/src/io/github/flofreak/threads/CalculationThread.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="403" y="452"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="io.github.flofreak.utilities.ImageUtilities" project="Mandelbrot" 
     file="/Mandelbrot/src/io/github/flofreak/utilities/ImageUtilities.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1690" y="127"/>    
+    <position height="-1" width="-1" x="558" y="96"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="io.github.flofreak.algorithms.BaseAlgorithm" project="Mandelbrot" 
+  <interface id="10" language="java" name="io.github.flofreak.algorithms.BaseAlgorithm" project="Mandelbrot" 
     file="/Mandelbrot/src/io/github/flofreak/algorithms/BaseAlgorithm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1226" y="316"/>    
+    <position height="-1" width="-1" x="1281" y="94"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="4" language="java" name="io.github.flofreak.algorithms.Mandelbrot" project="Mandelbrot" 
-    file="/Mandelbrot/src/io/github/flofreak/algorithms/Mandelbrot.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="938" y="115"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="io.github.flofreak.listener.CalculationListener" project="Mandelbrot" 
+  <class id="11" language="java" name="io.github.flofreak.listener.CalculationListener" project="Mandelbrot" 
     file="/Mandelbrot/src/io/github/flofreak/listener/CalculationListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="154" y="86"/>    
+    <position height="-1" width="-1" x="145" y="450"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="io.github.flofreak.utilities.Configuration" project="Mandelbrot" 
+  <class id="12" language="java" name="io.github.flofreak.utilities.Configuration" project="Mandelbrot" 
     file="/Mandelbrot/src/io/github/flofreak/utilities/Configuration.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="569" y="776"/>    
+    <position height="-1" width="-1" x="1185" y="647"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="io.github.flofreak.gui.GUI" project="Mandelbrot"
-    file="/Mandelbrot/src/io/github/flofreak/GUI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="578" y="317"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="io.github.flofreak.utilities.GUIUtilities" project="Mandelbrot" 
+  <class id="13" language="java" name="io.github.flofreak.utilities.GUIUtilities" project="Mandelbrot" 
     file="/Mandelbrot/src/io/github/flofreak/utilities/GUIUtilities.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1690" y="358"/>    
+    <position height="-1" width="-1" x="556" y="296"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="io.github.flofreak.algorithms.Julia" project="Mandelbrot" 
+  <class id="14" language="java" name="io.github.flofreak.algorithms.Julia" project="Mandelbrot" 
     file="/Mandelbrot/src/io/github/flofreak/algorithms/Julia.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="925" y="537"/>    
+    <position height="-1" width="-1" x="1549" y="220"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="io.github.flofreak.threads.CalculationThread" project="Mandelbrot" 
-    file="/Mandelbrot/src/io/github/flofreak/threads/CalculationThread.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="115" y="313"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="11">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="12" name="algorithm"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
+  <association id="15">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="16" name="jMenuBar">        
+        <position height="22" width="75" x="1122" y="284"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="18">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="19">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="20" name="leftPanel"/>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="20" width="31" x="752" y="405"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="14">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="15" name="cfg"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+  <association id="22">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="23" name="rightPanel">        
+        <position height="22" width="83" x="837" y="489"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="20" width="31" x="942" y="491"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="17">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <realization id="18">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <association id="19">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="20" name="gui"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
+  <association id="25">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="26" name="algorithm"/>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="20" width="31" x="1134" y="164"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="29" name="cfg">        
+        <position height="22" width="30" x="1096" y="550"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="31">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="32">    
+    <bendpoint x="1107" y="82"/>    
+    <bendpoint x="1106" y="59"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="33" name="gui">        
+        <position height="22" width="34" x="1088" y="38"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="20" width="31" x="1108" y="79"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
