@@ -12,7 +12,6 @@ This project was developed for a basic university project.
 
 * **Florian Warnke** - *Initial work* - [FloFreak](https://github.com/FloFreak)
 * Max Dunger
-* Tomislav Obad
 
 ## License
 
