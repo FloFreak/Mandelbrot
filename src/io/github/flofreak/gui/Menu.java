@@ -9,6 +9,7 @@ package io.github.flofreak.gui;
 
 import io.github.flofreak.algorithms.Julia;
 import io.github.flofreak.algorithms.Mandelbrot;
+import io.github.flofreak.threads.CalculationThread;
 import io.github.flofreak.utilities.ImageUtilities;
 
 import javax.swing.*;
@@ -108,7 +109,7 @@ class Menu extends JMenuBar {
         //Reset
         jMenuItemReset.addActionListener(e -> {
             GUI.rightPanel.setToDefaultValues();
-            GUI.setImage(GUI.getAlgorithm().calculate());
+            (new Thread(new CalculationThread())).start();
         });
 
         //Mandelbrot

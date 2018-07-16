@@ -7,7 +7,7 @@
  */
 package io.github.flofreak.listener;
 
-import io.github.flofreak.gui.GUI;
+import io.github.flofreak.threads.CalculationThread;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +26,7 @@ public class CalculationListener implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        GUI.setImage(GUI.getAlgorithm().calculate());
+        (new Thread(new CalculationThread())).start();
 
     }
 }

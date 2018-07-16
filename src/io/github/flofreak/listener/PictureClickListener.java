@@ -9,6 +9,7 @@ package io.github.flofreak.listener;
 
 import io.github.flofreak.algorithms.BaseAlgorithm;
 import io.github.flofreak.gui.GUI;
+import io.github.flofreak.threads.CalculationThread;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -72,7 +73,7 @@ public class PictureClickListener implements MouseListener {
             GUI.setMaxReal(maxreal);
 
             //Drawing the image
-            GUI.setImage(GUI.getAlgorithm().calculate());
+            (new Thread(new CalculationThread())).start();
         }
     }
 
