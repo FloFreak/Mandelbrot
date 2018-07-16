@@ -1,7 +1,7 @@
 /*
  * CalculationThread
  * v1.1
- * 02. Juli 2018
+ * 16. Juli 2018
  * Copyright (C) 2018 Florian Warnke
  * All rights reserved.
  */
@@ -23,6 +23,6 @@ public class CalculationThread implements Runnable {
     @Override
     public void run() {
         GUI.rightPanel.jLabelLoading.setVisible(true);
-        GUI.setImage(GUI.gui.getAlgorithm().calculate());
+        GUI.setImage(GUI.getAlgorithm().calculate());
     }
 }

@@ -1,5 +1,7 @@
 /*
-    https://rosettacode.org/wiki/Julia_set#Java
+ * Code from:
+ * https://rosettacode.org/wiki/Julia_set#Java
+ * Just to test if Interface fits
  */
 package io.github.flofreak.algorithms;
 
