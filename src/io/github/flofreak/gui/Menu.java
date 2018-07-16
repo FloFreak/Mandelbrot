@@ -103,7 +103,7 @@ class Menu extends JMenuBar {
 
         //Recalculate
         jMenuItemRecalculate.addActionListener(e ->
-                GUI.setImage(GUI.getAlgorithm().calculate())
+                (new Thread(new CalculationThread())).start()
         );
 
         //Reset
