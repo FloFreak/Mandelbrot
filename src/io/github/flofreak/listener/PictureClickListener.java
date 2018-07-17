@@ -17,13 +17,14 @@ import java.awt.event.MouseListener;
 /**
  * The listener for clicking the picture
  *
- * @author florian.warnke
+ * @author max.dunger
  * @version v2
  */
 public class PictureClickListener implements MouseListener {
 
     /**
      * Calculation of new center and axis on click
+     *
      * @param e MouseEvent which is permormed on click
      */
     @Override
@@ -34,43 +35,44 @@ public class PictureClickListener implements MouseListener {
             double column = e.getX();
             double row = e.getY();
 
-            //All inputs from GUI
+            //get all input data from the user
             double zoom = GUI.gui.getZoom();
-            double maxreal = GUI.gui.getMaxReal();
-            double minreal = GUI.gui.getMinReal();
-            double maximg = GUI.gui.getMaxImag();
-            double minimg = GUI.gui.getMinImag();
+            double maxReal = GUI.gui.getMaxReal();
+            double minReal = GUI.gui.getMinReal();
+            double maxImg = GUI.gui.getMaxImag();
+            double minImg = GUI.gui.getMinImag();
 
-            //Calculation of the Factors
-            double realfactor = (maxreal - minreal) / BaseAlgorithm.WIDTH;
-            double imgfactor = (maximg - minimg) / BaseAlgorithm.HEIGHT;
+            //calculate the width/height of one pixel
+            double realFactor = (maxReal - minReal) / BaseAlgorithm.WIDTH;
+            double imgFactor = (maxImg - minImg) / BaseAlgorithm.HEIGHT;
 
-            //New center in the Mandelbrot fractal
-            double x = minreal + (column * realfactor);
-            double y = maximg - (row * imgfactor);
+            //calculate the coordinate value of the clicked pixel
+            double x = minReal + (column * realFactor);
+            double y = maxImg - (row * imgFactor);
 
             //Zoom in or out
             double difY = 0;
             double difX = 0;
+            //calculate the new distance of the coordinate min & max
             if (e.getButton() == 1) {
-                difX = (maxreal - minreal) / (zoom * 2);
-                difY = (maximg - minimg) / (zoom * 2);
+                difX = (maxReal - minReal) / (zoom * 2);
+                difY = (maxImg - minImg) / (zoom * 2);
             } else if (e.getButton() == 3) {
-                difX = (maxreal - minreal) * (zoom / 2);
-                difY = (maximg - minimg) * (zoom / 2);
+                difX = (maxReal - minReal) * (zoom / 2);
+                difY = (maxImg - minImg) * (zoom / 2);
             }
 
-            //Calculation for new axis
-            maxreal = x + difX;
-            minreal = x - difX;
-            maximg = y + difY;
-            minimg = y - difY;
+            //calculate the new coordinate min & max
+            double NewMaxReal = x + (difX / 2);
+            double NewMinReal = x - (difX / 2);
+            double NewMaxImg = y + (difY / 2);
+            double NewMinImg = y - (difY / 2);
 
-            //Setting the new axis
-            GUI.setMinImag(minimg);
-            GUI.setMaxImag(maximg);
-            GUI.setMinReal(minreal);
-            GUI.setMaxReal(maxreal);
+            //write the new values in the GUI text boxes
+            GUI.setMinReal(NewMinReal);
+            GUI.setMaxReal(NewMaxReal);
+            GUI.setMinImag(NewMinImg);
+            GUI.setMaxImag(NewMaxImg);
 
             //Drawing the image
             (new Thread(new CalculationThread())).start();

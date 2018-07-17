@@ -12,6 +12,9 @@ import java.awt.image.BufferedImage;
 
 /**
  * Mandelbrot Algorithm
+ *
+ * @author max.dunger
+ * @version v2
  */
 public class Mandelbrot implements BaseAlgorithm {
 
@@ -19,7 +22,7 @@ public class Mandelbrot implements BaseAlgorithm {
 
     /**
      * Constructor for the Mandelbrot
-     *
+     * <p>
      * Calculates and draws the Mandelbrot fractal
      */
     public Mandelbrot() {
@@ -34,43 +37,48 @@ public class Mandelbrot implements BaseAlgorithm {
      * @return BufferedImage with the drawn Mandelbrot set
      */
     public BufferedImage calculate() {
-        //Factors for each axe
-        double realfactor = (gui.getMaxReal() - gui.getMinReal()) / WIDTH ;
-        double imgfactor = (gui.getMaxImag() - gui.getMinImag()) / HEIGHT ;
+        //get the Values of the coordinate system
+        double maxReal = gui.getMaxReal();
+        double minReal = gui.getMinReal();
+        double maxImg = gui.getMaxImag();
+        double minImg = gui.getMinImag();
 
-        //Image in which will be drawn
+        //calculate the width/height of one pixel
+        double realFactor = (maxReal - minReal) / WIDTH;
+        double imgFactor = (maxImg - minImg) / HEIGHT;
+
+
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-        //Runs each pixel from the image
-        for (int row = 0; row < HEIGHT; row ++) {
-            for (int column = 0; column < WIDTH; column ++) {
+        //go threw every single pixel in the buffered image
+        for (int row = 0; row < HEIGHT; row++) {
+            for (int column = 0; column < WIDTH; column++) {
 
-                //Coordinate as complex number 'C'
-                double c_real = gui.getMinReal() + (column * realfactor);
-                double c_img = gui.getMaxImag() - (row * imgfactor);
+                //get the coordinate value of the special pixel
+                double cReal = minReal + (column * realFactor);
+                double cImg = maxImg - (row * imgFactor);
 
-                //Iteration complex number 'Z'
-                double z_real = 0;
-                double z_img = 0;
 
-                // Iterate
+                // Iteration variables
+                double zReal = 0;
+                double zImg = 0;
+
+                // Iterate with the mandelbrot abort condition
                 int iterations = 0;
+                while (iterations < MAX && (zReal * zReal + zImg * zImg <= 4)) {
 
-                //Less than max iterations and Mandelbrot
-                while (iterations < MAX && (z_real * z_real + z_img * z_img <= 4)) {
-
-                    //Calculation of the new complex number
-                    double new_z_real = z_real * z_real - z_img * z_img + c_real;
-                    double new_z_img = 2 * z_real * z_img + c_img;
+                    //use of the mandelbrot formula
+                    double newZReal = zReal * zReal - zImg * zImg + cReal;
+                    double newZImg = 2 * zReal * zImg + cImg;
 
                     // Next iteration
-                    z_real = new_z_real;
-                    z_img = new_z_img;
+                    zReal = newZReal;
+                    zImg = newZImg;
+                    iterations++;
 
-                    iterations ++;
                 }
 
-                // Get color based on the number of iterations
+                // Get palette color based on the number of iterations
                 if (iterations == MAX) image.setRGB(column, row, 0x000000); // Black
                 else image.setRGB(column, row, colors[iterations]);
             }
