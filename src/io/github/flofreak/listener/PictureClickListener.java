@@ -55,11 +55,11 @@ public class PictureClickListener implements MouseListener {
             double difX = 0;
             //calculate the new distance of the coordinate min & max
             if (e.getButton() == 1) {
-                difX = (maxReal - minReal) / (zoom * 2);
-                difY = (maxImg - minImg) / (zoom * 2);
+                difX = (maxReal - minReal) / zoom;
+                difY = (maxImg - minImg) / zoom;
             } else if (e.getButton() == 3) {
-                difX = (maxReal - minReal) * (zoom / 2);
-                difY = (maxImg - minImg) * (zoom / 2);
+                difX = (maxReal - minReal) * zoom;
+                difY = (maxImg - minImg) * zoom;
             }
 
             //calculate the new coordinate min & max
